@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
 # user
   scope module: :users do
-  	root 'post_images#index'
+  	root 'home#top'
   	resources :themes, only: [:index, :show] do
   	  resources :post_images, only: [:new, :create]
   	end
