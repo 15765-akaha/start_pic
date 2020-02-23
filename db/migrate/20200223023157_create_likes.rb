@@ -1,8 +1,8 @@
 class CreateLikes < ActiveRecord::Migration[5.2]
   def change
     create_table :likes do |t|
-      t.refarences :user
-      t.refarences :post_image
+      t.references :user, 		foreign_key: true
+      t.references :post_image, foreign_key: true
 
       t.timestamps
     end
