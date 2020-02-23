@@ -7,8 +7,8 @@ class User < ApplicationRecord
   validates	:introduction, length: { maximum: 150 }
   # refaile
   attachment :profile_image
-  # 称号設定
-  enum :accivement { beginner: 0, rookie: 1, challenger: 2, advanced: 3, master: 4}
+  # 称号設定 0=beginner
+  enum accivement: [:beginner, :rookie, :challenger, :advanced, :master]
   # リレーション
   has_many :post_images, dependent: :destroy
   has_many :likes,		 dependent: :destroy
