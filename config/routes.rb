@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
 # user
-  namespace :users do
+  scope module: :users do
   	root 'home#top'
   	resources :themes, only: [:index, :show] do
   	  resources :post_images, only: [:new, :create]
