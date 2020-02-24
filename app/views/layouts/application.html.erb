@@ -18,18 +18,21 @@
 
       <a class="navbar-brand" href="/">StartPic</a>
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-left">
 
      <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %>
-        </li>
+
         <li class="nav-item">
           <%= link_to "画像一覧", post_images_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "テーマ一覧", themes_path, class: "nav-link" %>
         </li>
+
+        <li class="nav-item">
+          <%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %>
+        </li>
+
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
@@ -62,7 +65,7 @@
    
   <footer class="footer">
     <div class="container">
-      <p class="text-muted">Place sticky footer content here.</p>
+      <p class="text-muted">mumumu</p>
     </div>
   </footer>
    </div>
