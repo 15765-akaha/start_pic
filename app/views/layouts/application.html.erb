@@ -11,14 +11,15 @@
   </head>
 
   <body>
-    <!--ヘッダーの記述-->
   <header class="header">
-    <nav class="navbar navbar-fixed-top navbar-inverse">
+   <nav class="navbar navbar-expand navbar-dark navbar-fixed-top", style="background-color: #2bc489;">
       <div class="container">
 
-      <a class="navbar-brand" href="/">StartPic</a>
+      <div class="navbar-header">
+       <%= link_to "StartPic", root_path, class: "navbar-brand" %>
+      </div>
 
-    <ul class="nav navbar-nav navbar-left">
+    <ul class="navbar-nav navbar-left">
 
      <% if user_signed_in? %>
 
@@ -37,6 +38,15 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
       </ul>
+
+      <% elsif admin_signed_in? %>
+
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <p>管理者です</p>
+        </li>
     <% else %>
 
         <li class="nav-item">
