@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length:{ minimum:2, maximum: 20}
   validates	:introduction, length: { maximum: 150 }
   # refaile
-  # attachment :profile_image
+  attachment :profile_image
   # 称号設定 0=beginner
   enum accivement: [:beginner, :rookie, :challenger, :advanced, :master]
   # リレーション
