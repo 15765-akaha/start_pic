@@ -11,15 +11,15 @@
   </head>
 
   <body>
-  <div class="alert alert-primary" role="alert"><strong>太字！</strong>　<a href="#" class="alert-link">リンク文字</a>　普通の文字</div>
-    <!--ヘッダーの記述-->
   <header class="header">
-    <nav class="navbar navbar-fixed-top navbar-default">
+   <nav class="navbar navbar-expand navbar-dark navbar-fixed-top", style="background-color: #2bc489;">
       <div class="container">
 
-      <a class="navbar-brand" href="/">StartPic</a>
+      <div class="navbar-header">
+       <%= link_to "StartPic", root_path, class: "navbar-brand" %>
+      </div>
 
-    <ul class="nav navbar-nav navbar-left">
+    <ul class="navbar-nav navbar-left">
 
      <% if user_signed_in? %>
 
