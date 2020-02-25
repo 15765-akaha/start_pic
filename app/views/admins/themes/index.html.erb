@@ -1,1 +1,47 @@
 <h2>テーマ追加・一覧画面</h2>
+
+    <div class="row d-flex justify-content-center">
+    <%= form_for(@theme, url:admins_themes_path) do |f| %>
+        <div class="form-group mb-2 form-inline">
+        <%= f.text_field :title, class: "form-control" %>
+        <div class="form-check ml-2">
+          <%= f.radio_button :is_enabled, :true %>
+          <%= f.label :is_enabled, "公開" %>
+          <%= f.radio_button :is_enabled, :false %>
+          <%= f.label :is_enabled, "非公開" %>
+        </div>
+        <%= f.submit "追加", class: "btn btn-primary ml-2" %>
+        </div>
+    <% end %>
+    </div>
+
+    <div class="row">
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+         <th>タイトル</th>
+         <th>公開ステータス</th>
+         <th colspan="2">管理</th>
+        </tr>
+      </thead>
+
+      <tbody>
+       <% @themes.each do |theme| %>
+        <tr>
+         <td><%= theme.title %></td>
+         <td>
+          <% if theme.is_enabled == true %>
+            公開
+        　<% else %>
+            非公開
+          <% end %>
+         </td>
+         <td><%= link_to "編集する", edit_admins_theme_path(theme) %></td>
+         <td><%= link_to "削除する", admins_theme_path(theme), method: :delete, data: { confirm: '削除しますか?' } %></td>
+        </tr>
+        <% end %>
+    </table>
+
+    </div>
+    
