@@ -25,6 +25,8 @@ before_action :set_theme, only: [:edit, :update, :destroy]
   end
 
   def update
+    @theme.update(theme_params)
+    redirect_to admins_themes_path
   end
 
   private
