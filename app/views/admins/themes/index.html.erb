@@ -38,7 +38,7 @@
           <% end %>
          </td>
          <td><%= link_to "編集する", edit_admins_theme_path(theme) %></td>
-         <td><%= link_to "削除する", admins_theme_path(theme), method: :delete %></td>
+         <td><%= link_to "削除する", admins_theme_path(theme), method: :delete, data: { confirm: '削除しますか?' } %></td>
         </tr>
         <% end %>
     </table>

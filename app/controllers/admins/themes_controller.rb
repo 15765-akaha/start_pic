@@ -1,4 +1,6 @@
 class Admins::ThemesController < ApplicationController
+before_action :set_theme, only: [:edit, :update, :destroy]
+
   def index
     @theme = Theme.new
     @themes = Theme.all.order(:title)
@@ -15,7 +17,6 @@ class Admins::ThemesController < ApplicationController
   end
 
   def destroy
-    @theme = Theme.find(params[:id])
     @theme.destroy
     redirect_to admins_themes_path
   end
@@ -27,6 +28,9 @@ class Admins::ThemesController < ApplicationController
   end
 
   private
+   def set_theme
+      @theme = Theme.find(params[:id])
+   end
    def theme_params
         params.require(:theme).permit(:title, :is_enabled)
    end
