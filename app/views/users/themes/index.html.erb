@@ -10,9 +10,10 @@
                 <div class="col-3 mb-2">
                  <div class="card" style="width: 20rem;">
                     <%= link_to theme_path(theme) do %>
-                    <%= image_tag 'no_image.png', class: 'card-img-top' %>
+                    <%= image_tag 'no_image.png', class: 'card-img-top' %>　
                     <div class="card-body">
                     <h5 class="card-title text-muted"><%= theme.title %></h5>
+                    <h6 class="card-title text-muted">投稿数:<%= theme.post_images.count %></h6>
                     <% end %>
                     </div>
                  </div>

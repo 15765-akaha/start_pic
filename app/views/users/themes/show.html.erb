@@ -1,2 +1,23 @@
-<h1>Users::Themes#show</h1>
-<p>Find me in app/views/users/themes/show.html.erb</p>
+<div class="jumbotron jumbotron-theme jumbotron-fluid">	
+  <div class="container-fluid jumbotron-container">
+        <h1 class="title ml-5 display-4 text-white"><%= @theme.title %></h1>
+        <%= link_to "投稿する", new_theme_post_image_path(@theme.id), class:"btn btn-primary btn-lg ml-5" %>
+  </div>
+</div>
+
+     <div class="container-fluid">
+        <div class="card-group">
+            <div class="row">
+                <% @post_images.each do |post_image| %>
+                <div class="col-3 mb-2">
+                 <div class="card" style="width: 20rem;">
+                    <%= link_to post_image_path(post_image) do %>
+                    <%= attchment_image_tag post_image, :image, class:"img-fluid" %>　
+                    <% end %>
+                    </div>
+                 </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+     </div>
