@@ -1,0 +1,18 @@
+<div class="offset-1 col-10">
+	<div class="row d-flex aline-items-center">
+		<strong class="px-3 pb-1">テーマ検索</strong>
+	</div>
+    <div class="input-group">
+	<input type="text" class="form-control">
+	<span class="input-group-btn">
+		<button type="button" class="btn btn-default">ボタン</button>
+	</span>
+　　</div>
+	    <% themes.each do |theme| %>
+		<%= link_to theme_path(theme) do %>
+			<div class="row mx-auto mt-3">
+			<span class="text-center"><%= theme.title %></span>
+			</div>
+		<% end %>
+	  <% end %>
+</div>

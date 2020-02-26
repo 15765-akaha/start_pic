@@ -1,2 +1,21 @@
-<h1>Users::PostImages#show</h1>
-<p>Find me in app/views/users/post_images/show.html.erb</p>
+<div class="container">
+ <div class="row">
+
+
+    <div class="col-md-7">
+        <%= attachment_image_tag @post_image, :image, class:"img-fluid" %>
+    </div>
+
+    <div class="col-md-5">
+     <div class="row">
+      <div class="user_date">
+        <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded" %>
+        <h3><%= link_to @post_image.user.name, user_path(@post_image.user) %></h3>
+        <%= @post_image.user.accivement %>
+      </div>
+     </div>
+     <div class="row">
+     </div>
+    </div>
+ </div>
+</div>
