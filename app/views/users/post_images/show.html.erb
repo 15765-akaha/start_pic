@@ -35,6 +35,8 @@
      </div>
   </div>
 
+  <%= link_to "編集する", edit_post_image_path(@post_image.id) %>
+  <%= link_to "削除する", post_image_path(@post_image.id), method: :delete, class:"btn btn-danger" %>
     </div>
  </div>
 </div>

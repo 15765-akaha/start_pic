@@ -1,10 +1,11 @@
 class Users::PostImagesController < ApplicationController
+ before_action :set_post_image, only: [:show, :edit, :update, :destroy]
+
   def index
     @post_images = PostImage.all.shuffle
   end
 
   def show
-    @post_image = PostImage.find(params[:id])
   end
 
   def new
@@ -25,15 +26,23 @@ class Users::PostImagesController < ApplicationController
   end
 
   def update
+    @post_image.update(post_image_params)
+    redirect_to post_image_path(@post_image)
   end
 
   def destroy
+    @post_image.destroy
+    redirect_to post_images_path
   end
 
   def search
   end
 
   private
+  def set_post_image
+    @post_image = PostImage.find(params[:id])
+  end
+
   def post_image_params
      params.require(:post_image).permit(:image, :caption)
   end
