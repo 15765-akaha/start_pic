@@ -1,6 +1,6 @@
 class Users::PostImagesController < ApplicationController
   def index
-    @post_image = PostImage.all
+    @post_images = PostImage.all.shuffle
   end
 
   def show

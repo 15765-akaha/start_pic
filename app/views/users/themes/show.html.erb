@@ -5,19 +5,14 @@
   </div>
 </div>
 
-     <div class="container-fluid">
-        <div class="card-group">
-            <div class="row">
+        <div class="card-columns">
                 <% @post_images.each do |post_image| %>
-                <div class="col-3 mb-2">
-                 <div class="card" style="width: 20rem;">
+                    <div class="card">
                     <%= link_to post_image_path(post_image) do %>
-                    <%= attchment_image_tag post_image, :image, class:"img-fluid" %>　
+                    <%= attachment_image_tag post_image, :image, format: 'jpeg', class:"img-fluid" %>　
                     <% end %>
                     </div>
-                 </div>
-                </div>
                 <% end %>
-            </div>
         </div>
-     </div>
+
+        
