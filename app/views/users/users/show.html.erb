@@ -1,23 +1,43 @@
-<div class="row">
+<div class="container">
+ <div class="row">
  <section id ="main-visual">
  </section>
 </div>
 
-<div class="row">
+ <div class="row">
   <div class="col-xs-6">
-  	<table class="table">
-  	 <tr>
-  	  <td>image</td>
-  	  <td><%= @user.name %></td>
-  	  <td>いいね</td>
-  	  <td><%= @user.accivement %></td>
-  	 </tr>
-  	 <tr>
-  	  <td></td>
-  	  <td>introduction</td>
-  	 </tr>
-  	</table>
+   <div class="row border-bottom">
+		<div class="user_date d-flex mt-5">
+		<%= attachment_image_tag @user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded" %>
+		<div class="user_name h3 "><%= @user.name %></div>
+		<div class="user_likes">いいね</div>
+		<div class="user_accivement p"><%= @user.accivement %></div>
+		</div>
+   </div>
   </div>
-  <div class="col-xs-5">
+
+    <div class="row border-bottom">
+  		<p><%= @user.introduction %></p>
+    </div>
   </div>
+ </div>
+</div>
+
+ <div class="container mt-5">
+ <div class="row align-content-start">
+   <h4>投稿画像</h4>
+   <div class="card-deck">
+		   <% @post_images.each do |post_image| %>
+			 <div class="col-md-4 mb-3">
+			   <div class="card">
+			   <%= link_to post_image_path(post_image) do %>
+			   <%= attachment_image_tag post_image, :image, :fill,400,300, format: 'jpeg', class:"img-fluid" %>　
+			   <% end %>
+			   </div>
+			 </div>
+		   <% end %>
+   </div>
+ </div>
+</div>
+ </div>
 </div>

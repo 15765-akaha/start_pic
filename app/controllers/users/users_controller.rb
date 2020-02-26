@@ -1,6 +1,8 @@
 class Users::UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :withdrow]
   def show
     @user = User.find(params[:id])
+    @post_images = @user.post_images
   end
 
   def edit
@@ -22,5 +24,10 @@ class Users::UsersController < ApplicationController
   end
 
   def likes
+  end
+
+  private
+  def set_user
+    @user = User.find(params[:id])
   end
 end
