@@ -9,6 +9,8 @@ class Users::UsersController < ApplicationController
   end
 
   def update
+    @user.update(user_params)
+    redirect_to user_path(@user.id)
   end
 
   def withdrow
@@ -29,5 +31,9 @@ class Users::UsersController < ApplicationController
   private
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 end
