@@ -1,5 +1,6 @@
 class Users::PostImagesController < ApplicationController
  before_action :set_post_image, only: [:show, :edit, :update, :destroy]
+ before_action :authenticate_user!, except: [:index, :show, :search]
 
   def index
     @post_images = PostImage.all.shuffle
