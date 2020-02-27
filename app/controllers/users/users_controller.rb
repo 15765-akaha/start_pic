@@ -1,5 +1,5 @@
 class Users::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :withdrow]
+  before_action :set_user, only: [:show, :edit, :update, :withdrow, :switch]
   def show
     @user = User.find(params[:id])
     @post_images = @user.post_images
@@ -17,6 +17,10 @@ class Users::UsersController < ApplicationController
   end
 
   def switch
+    if @user.update(is_enabled: false)
+       sign_out current_user # サインアウト
+    end
+       redirect_to root_path
   end
 
   def follows
