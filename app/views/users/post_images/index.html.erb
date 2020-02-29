@@ -13,16 +13,16 @@
                     <%= attachment_image_tag post_image, :image, format: 'jpeg', class:"img-fluid" %>
                     <% end %>
 
-                    <!-- いいね機能 -->
-                    <div id="likes_buttons_<%#= post_image.id %>">
-                      <%= render partial: 'likes/like', locals:{post_image: post_image} %>
+                    <!-- いいねボタン -->
+                    <div id="likes_buttons_<%= post_image.id %>" class="likes_button">
+                      <%= render partial: 'users/likes/like', locals: {post_image: post_image} %>
                     </div>
 
 
                   </div>
                 <% end %>
 
-                
+
         </div>
       </div>
     </div>

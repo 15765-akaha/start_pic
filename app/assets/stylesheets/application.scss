@@ -49,6 +49,20 @@ background-position: center 30%;
   border: none;
 }
 
+.likes_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.good-heart {
+  color: rgb(235, 157, 235);
+  opacity: 0.5;
+}
+
+.no-heart {
+  color: white;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
