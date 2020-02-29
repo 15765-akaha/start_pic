@@ -5,4 +5,9 @@ class PostImage < ApplicationRecord
   belongs_to :theme
   has_many :image_comments, dependent: :destroy
   has_many :likes,			dependent: :destroy
+
+  # 既に引数のユーザーがいいねをクリエイトしているか
+  def liked_by?(user)
+    likes.where(user_id: user_id).exists?
+  end
 end
