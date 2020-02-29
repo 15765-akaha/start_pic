@@ -18,7 +18,7 @@
 .jumbotron-extend {
   height : 600px;
   min-height : 300px;
-  background-image: url("main.jpg");
+  background-image: image-url("main.jpg");
   background-size: cover;
   background-position: center 60%;
 }
@@ -32,7 +32,7 @@
 .jumbotron-theme {
 height : 300px;
 min-height : 300px;
-background-image: url("user_theme.jpg");
+background-image: image-url("user_theme.jpg");
 background-size: cover;
 background-position: center 30%;
 }
@@ -40,7 +40,7 @@ background-position: center 30%;
 .jumbotron-user {
   height : 300px;
   min-height : 300px;
-  background-image: url("main.jpg");
+  background-image: image-url("main.jpg");
   background-size: cover;
   background-position: center 30%;
   }
