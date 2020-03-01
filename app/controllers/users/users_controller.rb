@@ -31,7 +31,6 @@ class Users::UsersController < ApplicationController
     @users = @user.followers
   end
   
-
   def likes
     @like_post_images = @user.likes_post_images
   end
