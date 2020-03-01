@@ -18,9 +18,10 @@
     </div>
 
    <div class="col-2">
-   		<% if current_user.id == @user.id %>
-			<%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-primary" %>
-   		<% end %>
+      <!-- フォローボタン -->
+      <div id="follow_buttons_<%= @user.id %>" class="follow_button">
+        <%= render partial: 'follow', locals: {user: @user} %>
+      </div>
    </div>
   </div>
 
