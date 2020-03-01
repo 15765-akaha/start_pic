@@ -1,18 +1,19 @@
 <div class="container">
  <div class="row">
 
-
-    <div class="col-md-6 d-flex justify-content-center">
-      <div class="image_box my-5">
-        <%= attachment_image_tag @post_image, :image, class:"img-fluid" %>
+        <!-- 投稿画像 -->
+      <div class="col-md-6 d-flex justify-content-center">
+        <div class="image_box my-5">
+          <%= attachment_image_tag @post_image, :image, class:"img-fluid" %>
 
         <!-- いいねボタン -->
-        <div id="likes_buttons_<%= @post_image.id %>" class="likes_button">
+          <div id="likes_buttons_<%= @post_image.id %>" class="likes_button">
           <%= render partial: 'users/likes/like', locals: {post_image: @post_image} %>
+          </div>
         </div>
       </div>
-    </div>
 
+        <!-- ユーザープロフィール -->
     <div class="col-md-5 offset-1">
      <div class="row border-bottom">
       <div class="user_date d-flex mt-5">
@@ -23,7 +24,7 @@
       </div>
      </div>
 
-
+        <!-- 投稿コメント -->
      <div class="row border-bottom">
         <div class="card border-secondary mb-3">
          <div class="card-body text-secondary">
@@ -32,16 +33,32 @@
         </div>
      </div>
 
+        <!-- タグ -->
      <div class="row border-bottom">
-     <div class="card border-secondary mb-3">
-      <div class="card-body text-secondary">
-      <p class="card-text">タグ</p>
+      <div class="card border-secondary mb-3">
+        <div class="card-body text-secondary">
+        <p class="card-text">タグ</p>
+        </div>
       </div>
      </div>
-  </div>
+
+
+        <!-- コメント蘭 -->
+     <div class="row border-bottom">
+      <div class="col-12">
+       <div class="form-group">
+        <%= form_with model: [@post_image, @image_comment] do |f| %>
+        <%= f.text_area :comment, rows:'3', class:"form-control" %>
+        <%= f.submit :"コメントする" %>
+        <% end %>
+       </div>
+      </div>
+     </div>
+
+
 
   <%= link_to "編集する", edit_post_image_path(@post_image.id) %>
   <%= link_to "削除する", post_image_path(@post_image.id), method: :delete, class:"btn btn-danger" %>
-    </div>
+
  </div>
 </div>

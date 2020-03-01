@@ -7,6 +7,7 @@ class Users::PostImagesController < ApplicationController
   end
 
   def show
+    @image_comment = ImageComment.new
   end
 
   def new
