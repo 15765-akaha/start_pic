@@ -1,5 +1,5 @@
 class Users::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :withdrow, :switch]
+  before_action :set_user, only: [:show, :edit, :update, :withdrow, :switch, :follows, :followers, :likes]
   def show
     @user = User.find(params[:id])
     @post_images = @user.post_images
@@ -24,12 +24,21 @@ class Users::UsersController < ApplicationController
   end
 
   def follows
+<<<<<<< Updated upstream
   end
 
   def followers
+=======
+    @users = @user.followings
+  end
+
+  def followers
+    @users = @user.followers
+>>>>>>> Stashed changes
   end
 
   def likes
+    @like_post_images = @user.likes_post_images
   end
 
   private

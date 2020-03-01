@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   	resources :users, only: [:show, :edit, :update] do
   	  resource :relationships, only: [:create, :destroy]
   	  member do
-  	  	get :withdrow, :follows, :followers
+  	  	get :withdrow, :follows, :followers, :likes
   	  	patch :switch
   	  end
   	end
