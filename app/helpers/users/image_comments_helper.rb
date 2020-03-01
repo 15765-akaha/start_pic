@@ -1,0 +1,2 @@
+module Users::ImageCommentsHelper
+end
