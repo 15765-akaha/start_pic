@@ -24,18 +24,13 @@ class Users::UsersController < ApplicationController
   end
 
   def follows
-<<<<<<< Updated upstream
-  end
-
-  def followers
-=======
     @users = @user.followings
   end
 
   def followers
     @users = @user.followers
->>>>>>> Stashed changes
   end
+  
 
   def likes
     @like_post_images = @user.likes_post_images

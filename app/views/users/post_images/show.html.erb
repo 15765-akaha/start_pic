@@ -1,47 +1,88 @@
 <div class="container">
  <div class="row">
 
-
-    <div class="col-md-6 d-flex justify-content-center">
-      <div class="image_box my-5">
-        <%= attachment_image_tag @post_image, :image, class:"img-fluid" %>
+        <!-- 投稿画像 -->
+      <div class="col-md-6 d-flex justify-content-center">
+        <div class="image_box my-5">
+          <%= attachment_image_tag @post_image, :image, class:"img-fluid" %>
 
         <!-- いいねボタン -->
-        <div id="likes_buttons_<%= @post_image.id %>" class="likes_button">
+          <div id="likes_buttons_<%= @post_image.id %>" class="likes_button">
           <%= render partial: 'users/likes/like', locals: {post_image: @post_image} %>
+          </div>
         </div>
       </div>
-    </div>
 
+        <!-- ユーザープロフィール -->
     <div class="col-md-5 offset-1">
      <div class="row border-bottom">
-      <div class="user_date d-flex mt-5">
-        <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded" %>
+      <div class="user_date d-flex justify-content-between mt-5">
+        <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded-circle" %>
         <div class="user_name h3 "><%= link_to @post_image.user.name, user_path(@post_image.user) %></div>
-        <div class="user_likes">いいね</div>
-        <div class="user_accivement p"><%= @post_image.user.accivement %></div>
+        <div class="user_accivement"><%= @post_image.user.accivement %></div>
+        <!-- フォローボタン -->
+        <div id="follow_buttons_<%= @post_image.user.id %>" class="follow_button">
+          <%= render partial: 'users/users/follow', locals: {user: @post_image.user} %>
+        </div>
       </div>
      </div>
 
-
+        <!-- 投稿コメント -->
      <div class="row border-bottom">
+      <div class="col-xs-8">
         <div class="card border-secondary mb-3">
          <div class="card-body text-secondary">
          <p class="card-text"><%= @post_image.caption %></p>
          </div>
         </div>
-     </div>
-
-     <div class="row border-bottom">
-     <div class="card border-secondary mb-3">
-      <div class="card-body text-secondary">
-      <p class="card-text">タグ</p>
       </div>
      </div>
-  </div>
+
+        <!-- タグ -->
+     <div class="row border-bottom">
+      <div class="card border-secondary mb-3">
+        <div class="card-body text-secondary">
+        <p class="card-text">タグ</p>
+        </div>
+      </div>
+     </div>
+
+        <!-- コメント欄 -->
+     <h5><i class="fa fa-heart good-heart" aria-hidden="true"></i>(<%= @post_image.likes.count %>) Comments(<%= @post_image.image_comments.count%>)</h5>
+     <% @post_image.image_comments.each do |image_comment|%>
+     <div class="row mb-3">
+      <div class="col-xs-2 ml-2">
+        <%= link_to user_path(image_comment.user) do %> 
+          <%= attachment_image_tag image_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.png", :size => "60x60" ,class: "rounded-circle" %>
+          <%= image_comment.user.name %>
+        <% end %>
+      </div>
+
+      <div class="col-xs-8  offset-1">
+         <%= image_comment.comment %><br><br>
+         <%= image_comment.created_at.strftime('%Y/%m/%d') %>
+      <% if image_comment.user == current_user %>
+         <%= link_to 'コメントを削除する', post_image_image_comment_path(image_comment.post_image_id, image_comment.id), method: :delete, class: "small" %>
+      <% end %>
+      </div>
+     </div>
+     <% end %>
+
+        <!-- コメントフォーム -->
+     <div class="row border-bottom">
+      <div class="col-12">
+       <div class="form-group">
+        <%= form_with model: [@post_image, @image_comment] do |f| %>
+        <%= f.text_area :comment, rows:'2', class:"form-control" %>
+        <%= f.submit :"コメントする" %>
+        <% end %>
+       </div>
+      </div>
+     </div>
 
   <%= link_to "編集する", edit_post_image_path(@post_image.id) %>
   <%= link_to "削除する", post_image_path(@post_image.id), method: :delete, class:"btn btn-danger" %>
-    </div>
- </div>
+
+  </div>
+</div>
 </div>
