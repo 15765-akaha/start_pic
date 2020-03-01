@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :post_images, dependent: :destroy
   has_many :likes,		 dependent: :destroy
   # ユーザーがお気に入りした投稿画像を集める
-  has_many :likes_post_images, through: :likes, source: :post_images
+  has_many :likes_post_images, through: :likes, source: :post_image
   has_many :image_comments, dependent: :destroy
   # フォローする側のユーザー視点
   has_many :active_relationships, class_name:"Relationship", foreign_key:"following_id", dependent: :destroy

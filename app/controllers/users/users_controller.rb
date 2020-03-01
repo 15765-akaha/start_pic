@@ -1,5 +1,5 @@
 class Users::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :withdrow, :switch]
+  before_action :set_user, only: [:show, :edit, :update, :withdrow, :switch, :follows, :followers, :likes]
   def show
     @user = User.find(params[:id])
     @post_images = @user.post_images
@@ -24,17 +24,16 @@ class Users::UsersController < ApplicationController
   end
 
   def follows
-    user = User.find(params[:id])
-    @users = user.followings
+    @users = @user.followings
   end
 
   def followers
-    user = User.find(params[:id])
-    @users = user.followers
+    @users = @user.followers
   end
   
 
   def likes
+    @like_post_images = @user.likes_post_images
   end
 
   private
