@@ -45,7 +45,7 @@
      </div>
 
         <!-- コメント欄 -->
-     <h5>Comments(<%= @post_image.image_comments.count%>)</h5>
+     <h5><i class="fa fa-heart good-heart" aria-hidden="true"></i>(<%= @post_image.likes.count %>) Comments(<%= @post_image.image_comments.count%>)</h5>
      <% @post_image.image_comments.each do |image_comment|%>
      <div class="row mb-3">
       <div class="col-xs-2 ml-2">
