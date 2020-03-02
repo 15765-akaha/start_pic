@@ -9,6 +9,7 @@ class Users::ThemesController < ApplicationController
   end
 
   def search
+    @themes = Theme.search(params[:search])
   end
 
 end

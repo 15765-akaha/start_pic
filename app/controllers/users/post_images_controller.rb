@@ -3,7 +3,7 @@ class Users::PostImagesController < ApplicationController
  before_action :authenticate_user!, except: [:index, :show, :search]
 
   def index
-    @post_images = PostImage.all.shuffle
+      @post_images = PostImage.all.shuffle
   end
 
   def show
