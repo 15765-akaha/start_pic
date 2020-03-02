@@ -22,7 +22,7 @@
         <div class="user_accivement"><%= @post_image.user.accivement %></div>
         <!-- フォローボタン -->
         <div id="follow_buttons_<%= @post_image.user.id %>" class="follow_button">
-          <%= render partial: 'users/users/follow', locals: {user: @post_image.user} %>
+          <%= render partial: 'users/users/follow_btn', locals: {user: @post_image.user} %>
         </div>
       </div>
      </div>
