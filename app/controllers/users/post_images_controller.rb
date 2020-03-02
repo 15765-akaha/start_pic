@@ -46,7 +46,7 @@ class Users::PostImagesController < ApplicationController
   end
 
   def post_image_params
-     params.require(:post_image).permit(:image, :caption)
+     params.require(:post_image).permit(:image, :caption, :tag_list)
   end
 
 end
