@@ -20,8 +20,8 @@
 
     <div class="row">
       <div class="col-sm-5">
-       <%= f.label :tag_list, "タグ" %><br>
-       <%= f.text_field :tag_list, value: @post_image.tag_list.join(' '), placeholder:"タグ付け" %>
+       <%= f.label :tag_list, "タグ(、で区切って下さい）" %><br>
+       <%= f.text_field :tag_list, value: @post_image.tag_list.join('、'), class:"form-control", placeholder:"夜景、月" %>
       </div>
     </div>
     <br>
