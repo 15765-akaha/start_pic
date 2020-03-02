@@ -30,7 +30,7 @@
 
         <div class="row">
             <%= f.label :tag_list, "タグ" %>
-            <%= f.text_field :tag_list, value: @post_image.tag_list.join(','), class:"form-control" %>
+            <%= f.text_field :tag_list, value: @post_image.tag_list.join(' '), class:"form-control" %>
         </div>
         <br>
         <%= f.submit :"変更する", class:"btn btn-primary" %>
