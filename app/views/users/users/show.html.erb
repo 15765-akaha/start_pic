@@ -4,11 +4,6 @@
   </div>
 </div>
 
-
-<%= link_to "フォロー", follows_user_path(@user), class:"btn btn-primary" %>
-<%= link_to "フォロワー", followers_user_path(@user), class:"btn btn-primary" %>
-<%= link_to "お気に入り", likes_user_path(@user), class:"btn btn-success"%>
-
 <div class="container">
   <div class="row">
     <div class="col-6">
@@ -25,7 +20,7 @@
    <div class="col-2">
       <!-- フォローボタン -->
       <div id="follow_buttons_<%= @user.id %>" class="follow_button">
-        <%= render partial: 'follow', locals: {user: @user} %>
+        <%= render partial: 'follow_btn', locals: {user: @user} %>
       </div>
    </div>
   </div>
@@ -39,25 +34,49 @@
 </div>
 
   <div class="container mt-2">
-     <h4>投稿画像</h4>
-    <div class="row">
+  <!-- nav_tabs_simple.html -->
+<ul class="nav nav-tabs justify-content-end">
+  <li class="nav-item">
+    <%= link_to "投稿画像", user_path(@user), class:"nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "お気に入り", user_path(@user), class:"nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "フォロー", user_path(@user), class:"nav-link active" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "フォロワー", user_path(@user), class:"nav-link active" %>
+  </li>
+</ul>
 
-		   <% @post_images.each do |post_image| %>
-			 <div class="col-md-4 mb-3">
-			  <div class="card">
-			   <%= link_to post_image_path(post_image) do %>
-			   <%= attachment_image_tag post_image, :image, :fill,400,300, format: 'jpeg', class:"img-fluid" %>　
-			   <% end %>
-        <!-- いいねボタン -->
-         <div id="likes_buttons_<%= post_image.id %>" class="likes_button">
-         <%= render partial: 'users/likes/like', locals: {post_image: post_image} %>
-         </div>
-			  </div>
-       </div>
-       <% end %>
+      <!-- 投稿画像 -->
+      <h4>投稿画像</h4>
+      <div id="user_post_images_<%=@user.id%>%">
+		   <%= render partial: 'user_post_images', locals: {post_images: @post_images} %>
+      </div>
+
+      <!-- お気に入り画像 -->  
+      <div id="user_like_images_<%=@user.id%>%">
+      <h4>お気に入り画像</h4>
+		   <%= render partial: 'user_post_images', locals: {post_images: @like_post_images} %>
+      </div>
+
+      <!-- フォロー一覧 -->  
+      <div id="user_following_<%=@user.id%>%">
+      <h4>フォロー</h4>
+		   <%= render partial: 'follows', locals: {users: @followings} %>
+      </div>
+
+      <!-- フォロワーー一覧 --> 
+      <h4>フォロワー</h4> 
+      <div id="user_followers_<%=@user.id%>%">
+		   <%= render partial: 'follows', locals: {users: @followers} %>
+      </div>
        
     </div>
   </div>
  </div>
 
 </div>
+
