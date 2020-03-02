@@ -3,6 +3,9 @@ class Users::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post_images = @user.post_images
+    @like_post_images = @user.likes_post_images
+    @followings = @user.followings
+    @followers = @user.followers
   end
 
   def edit
@@ -31,7 +34,6 @@ class Users::UsersController < ApplicationController
     @users = @user.followers
   end
   
-
   def likes
     @like_post_images = @user.likes_post_images
   end
