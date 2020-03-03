@@ -51,24 +51,7 @@
 
         <!-- コメント欄 -->
      <h5><i class="fa fa-heart good-heart" aria-hidden="true"></i>(<%= @post_image.likes.count %>) Comments(<%= @post_image.image_comments.count%>)</h5>
-     <% @post_image.image_comments.each do |image_comment|%>
-     <div class="row mb-3">
-      <div class="col-xs-2 ml-2">
-        <%= link_to user_path(image_comment.user) do %> 
-          <%= attachment_image_tag image_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.png", :size => "60x60" ,class: "rounded-circle" %>
-          <%= image_comment.user.name %>
-        <% end %>
-      </div>
-
-      <div class="col-xs-8  offset-1">
-         <%= image_comment.comment %><br><br>
-         <%= image_comment.created_at.strftime('%Y/%m/%d') %>
-      <% if image_comment.user == current_user %>
-         <%= link_to 'コメントを削除する', post_image_image_comment_path(image_comment.post_image_id, image_comment.id), method: :delete, class: "small" %>
-      <% end %>
-      </div>
-     </div>
-     <% end %>
+     <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
 
         <!-- コメントフォーム -->
      <div class="row border-bottom">
