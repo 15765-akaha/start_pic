@@ -24,17 +24,15 @@
 
 
         <div class="row">
+            <%= f.label :caption, "投稿コメント" %>
             <%= f.text_area :caption, rows:'3', class:"form-control" %>
         </div>
 
-        <div class="row border-bottom">
-         <div class="card border-secondary mb-3">
-         <div class="card-body text-secondary">
-        <p class="card-text">タグ</p>
-         </div>
-         </div>
+        <div class="row">
+            <%= f.label :tag_list, "タグ(、で区切って下さい）" %>
+            <%= f.text_field :tag_list, value: @post_image.tag_list.join('、'), class:"form-control" %>
         </div>
-
+        <br>
         <%= f.submit :"変更する", class:"btn btn-primary" %>
 
     <% end %>

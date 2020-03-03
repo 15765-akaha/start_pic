@@ -6,15 +6,22 @@
 
     <div class="row">
       <div class="col-sm-12">
-       <%= f.label :image %><br>
+       <%= f.label :image, "投稿画像" %><br>
        <%= f.attachment_field :image %>
       </div>
     </div>
-    <br>
+
     <div class="row">
       <div class="col-sm-5">
-       <%= f.label :"投稿コメント" %><br>
+       <%= f.label :caption, "投稿コメント" %><br>
        <%= f.text_area :caption, class:"form-control", rows:"3", placeholder:"コメント" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-5">
+       <%= f.label :tag_list, "タグ(、で区切って下さい）" %><br>
+       <%= f.text_field :tag_list, value: @post_image.tag_list.join('、'), class:"form-control", placeholder:"夜景、月" %>
       </div>
     </div>
     <br>
