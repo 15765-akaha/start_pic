@@ -49,9 +49,12 @@
       </div>
      </div>
 
+        <!-- ステータス -->
+        <div id="likes_status_<%= @post_image.id %>" class="likes_status">
+         <%= render partial: 'users/likes/like_status', locals: {post_image: @post_image} %>
+        </div>
         <!-- コメント欄 -->
-     <h5><i class="fa fa-heart good-heart" aria-hidden="true"></i>(<%= @post_image.likes.count %>) Comments(<%= @post_image.image_comments.count%>)</h5>
-     <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
+         <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
 
         <!-- コメントフォーム -->
      <div class="row border-bottom">
