@@ -1,11 +1,12 @@
 class Users::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :withdrow, :switch, :follows, :followers, :likes]
+  before_action :appraise_user, only: [:show]
   def show
-    @user = User.find(params[:id])
-    @post_images = @user.post_images
-    @like_post_images = @user.likes_post_images
-    @followings = @user.followings
-    @followers = @user.followers
+    @post_images = @user.post_images #投稿画像
+    @like_post_images = @user.likes_post_images #いいねした画像
+    @followings = @user.followings #フォロー
+    @followers = @user.followers #フォロワー
+    @total_likes = Like.where(post_image_id: @user.post_images.ids).size
   end
 
   def edit
@@ -25,19 +26,6 @@ class Users::UsersController < ApplicationController
     end
        redirect_to root_path
   end
-
-  def follows
-    @users = @user.followings
-  end
-
-  def followers
-    @users = @user.followers
-  end
-  
-  def likes
-    @like_post_images = @user.likes_post_images
-  end
-
   private
   def set_user
     @user = User.find(params[:id])
@@ -46,4 +34,15 @@ class Users::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
+
+  def appraise_user
+    @total_likes = Like.where(post_image_id: @user.post_images.ids).size
+    case @total_likes
+    when 1..9
+      @user.update(accivement: "BEGINNER")
+    when 10..20
+      @user.update(accivement: "ROOKIE")
+    end
+  end
+
 end
