@@ -8,4 +8,5 @@ class Theme < ApplicationRecord
 	 else
 		Theme.all
 	 end
+	end
 end

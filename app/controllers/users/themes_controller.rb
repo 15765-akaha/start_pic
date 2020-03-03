@@ -1,15 +1,15 @@
 class Users::ThemesController < ApplicationController
   def index
-    @themes = Theme.all
+    if params[:search] #検索が含まれていたら
+      @themes = Theme.search(params[:search])
+    else
+      @themes = Theme.all
+    end
   end
 
   def show
     @theme = Theme.find(params[:id])
     @post_images = @theme.post_images.all
-  end
-
-  def search
-    @themes = Theme.search(params[:search])
   end
 
 end
