@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   scope module: :users do
 	root 'home#top'
   	resources :themes, only: [:index, :show] do
-  	  resources :post_images, only: [:new, :create]
+	  resources :post_images, only: [:new, :create]
   	end
   	resources :post_images, only: [:index, :show, :edit, :update, :destroy] do
   	  resource :likes, only:    [:create, :destroy]

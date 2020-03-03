@@ -8,6 +8,7 @@ class Users::PostImagesController < ApplicationController
     else
       @post_images = PostImage.all.shuffle
     end
+
   end
 
   def show
