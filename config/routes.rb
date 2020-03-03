@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   	resources :post_images, only: [:index, :show, :edit, :update, :destroy] do
   	  resource :likes, only:    [:create, :destroy]
   	  resources :image_comments, only: [:create, :destroy]
-  	end
+	end
+	get 'tags/:tag', to: 'post_images#index', as: :tag #投稿タグリンクのルーティング
   	resources :users, only: [:show, :edit, :update] do
   	  resource :relationships, only: [:create, :destroy]
   	  member do
