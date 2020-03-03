@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # refaile
   attachment :profile_image
   # 称号設定 0=beginner
-  enum accivement: [:beginner, :rookie, :challenger, :advanced, :master]
+  enum accivement: [:BEGINNER, :ROOKIE, :CHALLENGER, :ADVANCED, :MASTER]
   # リレーション
   has_many :post_images, dependent: :destroy
   has_many :likes,		 dependent: :destroy
