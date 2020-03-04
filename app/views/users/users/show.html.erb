@@ -12,7 +12,17 @@
         <%= attachment_image_tag @user, :profile_image, :fill,120,120, fallback: 'no_image.png', size: '120x120', class: "rounded" %>
         <div class="user_name h3 "><%= @user.name %></div>
         <div class="user_likes"><%= @total_likes %></div>
-        <div class="user_accivement p"><%= @user.accivement %></div>
+        <%case @user.accivement %>
+        <% when "BEGINNER"%>
+        <%= image_tag 'begginer.png', size: '60x60' %>
+        <% when "ROOKIE"%>
+        <%= image_tag 'main.jpg', size: '60x60' %>
+        <% when "CHARRENGER"%>
+        <%= image_tag 'begginer.png', size: '60x60' %>
+        <% when "MASTER"%>
+        <%= image_tag 'begginer.png', size: '60x60' %> 
+        <% end %>      
+        <%= @user.accivement%>
        </div>
      </div>
     </div>
