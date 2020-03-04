@@ -11,7 +11,7 @@
        <div class="user_date d-flex mt-5">
         <%= attachment_image_tag @user, :profile_image, :fill,120,120, fallback: 'no_image.png', size: '120x120', class: "rounded" %>
         <div class="user_name h3 "><%= @user.name %></div>
-        <div class="user_likes">いいね</div>
+        <div class="user_likes"><%= @total_likes %></div>
         <div class="user_accivement p"><%= @user.accivement %></div>
        </div>
      </div>
