@@ -54,7 +54,9 @@
          <%= render partial: 'users/likes/like_status', locals: {post_image: @post_image} %>
         </div>
         <!-- コメント欄 -->
+        <div id="image_comments">
          <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
+        </div>
 
         <!-- コメントフォーム -->
      <div class="row border-bottom">
