@@ -7,9 +7,11 @@ class PostImage < ApplicationRecord
   has_many :image_comments, dependent: :destroy
   has_many :likes,			dependent: :destroy
 
-  # 既に引数のユーザーがいいねをクリエイトしているか
+  # 既に引数のユーザーがいいねをクリエイトしているか、引数がない場合はスルー
   def liked_by?(user)
-    likes.where(user_id: user.id).exists?
+    if user
+      likes.where(user_id: user.id).exists?
+    end
   end
 
   # def self.search(search) #タグのキーワード検索
