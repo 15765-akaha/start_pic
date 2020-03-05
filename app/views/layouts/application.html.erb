@@ -23,6 +23,10 @@
 
      <% if user_signed_in? %>
 
+      <span class="u h7 text-white strong">
+        ようこそ！<%= current_user.name %>さん！
+      </span>
+
         <li class="nav-item">
           <%= link_to "画像一覧", post_images_path, class: "nav-link" %>
         </li>
@@ -41,30 +45,34 @@
 
       <% elsif admin_signed_in? %>
 
+      <div class ="user_name">
+       <span class="u h7 text-white strong">
+        管理者ログイン
+      </span>
+      </div>
+
 
         <li class="nav-item">
-          <%= link_to "管理者TOP", admins_root_path, class: "nav-link" %>
+          <%= link_to "TOP", admins_root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ユーザー管理", admins_user_dates_path, class: "nav-link" %>
+          <%= link_to "テーマ作成", admins_themes_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "投稿画像管理", admins_post_images_path, class: "nav-link" %>
+          <%= link_to "画像一覧(ユーザー）", post_images_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "テーマ管理", admins_themes_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "画像一覧(ユーザー側ページ）", post_images_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "テーマ一覧(ユーザー側ページ）", themes_path, class: "nav-link" %>
+          <%= link_to "テーマ一覧(ユーザー）", themes_path, class: "nav-link" %>
         </li>
 
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
         </li>
     <% else %>
+
+      <span class="u h7 text-white strong">
+        ようこそ！ゲストさん！
+      </span>    
 
         <li class="nav-item">
           <%= link_to "会員登録", new_user_registration_path, class: "nav-link" %>
