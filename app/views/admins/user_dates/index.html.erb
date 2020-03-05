@@ -8,7 +8,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>会員ID</th>
+          <th>ユーザーID</th>
           <th>イメージ</th>
           <th>氏名</th>
           <th>メールアドレス</th>
@@ -37,7 +37,7 @@
               退会済み
               <% end %>
           </td>
-          <td><%= link_to '管理用詳細画面',admins_user_date_path(user) %></td>
+          <td><%= link_to '管理用画面',admins_user_date_path(user) %></td>
         </tr>
         <% end %>
       </tbody>

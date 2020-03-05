@@ -46,11 +46,21 @@
           <%= link_to "管理者TOP", admins_root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "画像一覧", post_images_path, class: "nav-link" %>
+          <%= link_to "ユーザー管理", admins_user_dates_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "テーマ一覧", admins_themes_path, class: "nav-link" %>
+          <%= link_to "投稿画像管理", admins_post_images_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "テーマ管理", admins_themes_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "画像一覧(ユーザー側ページ）", post_images_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "テーマ一覧(ユーザー側ページ）", themes_path, class: "nav-link" %>
+        </li>
+
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
         </li>
