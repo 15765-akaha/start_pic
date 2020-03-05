@@ -1,5 +1,5 @@
 class Users::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :withdrow, :switch, :follows, :followers, :likes]
+  before_action :set_user
   def show
     @post_images = @user.post_images #投稿画像
     @like_post_images = @user.likes_post_images #いいねした画像
