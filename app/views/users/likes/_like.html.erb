@@ -1,3 +1,4 @@
+　 <%if current_user != post_image.user %>
     <% if post_image.liked_by?(current_user) %>
         <%= link_to post_image_likes_path(post_image), method: :delete, remote: true do %>
             <i class="fa fa-heart fa-2x good-heart" aria-hidden="true"></i>
@@ -7,3 +8,4 @@
             <i class="fa fa-heart-o fa-2x no-heart" aria-hidden="true"></i>
         <% end %>
     <% end %>
+   <% end %>
