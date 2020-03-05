@@ -1,4 +1,5 @@
 class Admins::UserDatesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_user , except: [:index]
   def index
     @users = User.page(params[:page]).per(10)

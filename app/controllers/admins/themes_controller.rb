@@ -1,5 +1,6 @@
 class Admins::ThemesController < ApplicationController
-before_action :set_theme, only: [:edit, :update, :destroy]
+  before_action :authenticate_admin!
+  before_action :set_theme, only: [:edit, :update, :destroy]
 
   def index
     @theme = Theme.new
