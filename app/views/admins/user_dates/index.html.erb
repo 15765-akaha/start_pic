@@ -9,6 +9,7 @@
       <thead>
         <tr>
           <th>会員ID</th>
+          <th>イメージ</th>
           <th>氏名</th>
           <th>メールアドレス</th>
           <th>投稿数</th>
@@ -22,8 +23,9 @@
         <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
+          <td><%= attachment_image_tag user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '60x60', class: "rounded" %>
           <td><%= link_to user_path(user) do %>
-              <%= user.name %>
+              <%= user.name %>(ユーザーページ)
               <% end %>
             </td>
           <td><%= user.email %></td>
@@ -35,7 +37,7 @@
               退会済み
               <% end %>
           </td>
-          <td><%= link_to '編集する',edit_admins_user_date_path(user) %></td>
+          <td><%= link_to '管理用詳細画面',admins_user_date_path(user) %></td>
         </tr>
         <% end %>
       </tbody>
