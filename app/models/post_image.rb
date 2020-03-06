@@ -13,12 +13,4 @@ class PostImage < ApplicationRecord
       likes.where(user_id: user.id).exists?
     end
   end
-
-  # def self.search(search) #タグのキーワード検索
-  #   if search
-  #    PostImage.where(['tags LIKE ?', "%#{search}%"])
-  #   else
-  #    PostImage.all
-  #   end
-  #  end
 end
