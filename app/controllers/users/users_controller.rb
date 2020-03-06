@@ -1,4 +1,5 @@
 class Users::UsersController < ApplicationController
+  before_action :authenticate_user! , except: [:show]
   before_action :set_user
   def show
     @post_images = @user.post_images #投稿画像
