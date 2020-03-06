@@ -43,6 +43,6 @@ class Admins::ThemesController < ApplicationController
       @theme = Theme.find(params[:id])
    end
    def theme_params
-        params.require(:theme).permit(:title, :is_enabled)
+      params.require(:theme).permit(:title, :is_enabled)
    end
 end

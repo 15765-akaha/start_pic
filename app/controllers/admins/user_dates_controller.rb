@@ -13,8 +13,13 @@ class Admins::UserDatesController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to admins_user_date_path(@user)
+    if @user.update(user_params)
+       flash[:success] = 'ユーザー情報を変更しました！'
+       redirect_to admins_user_date_path(@user)
+    else
+       flash.now[:danger] = '変更に失敗しました。'
+       render :edit
+    end
   end
 
   private
