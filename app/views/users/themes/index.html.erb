@@ -14,5 +14,5 @@
         <div class="row">
           <%= render partial: 'themes', locals: {themes: @themes} %>
         </div>
-        
+        <%= paginate @themes %>
   </div>

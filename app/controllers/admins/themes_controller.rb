@@ -1,9 +1,10 @@
 class Admins::ThemesController < ApplicationController
-before_action :set_theme, only: [:edit, :update, :destroy]
+  before_action :authenticate_admin!
+  before_action :set_theme, only: [:edit, :update, :destroy]
 
   def index
     @theme = Theme.new
-    @themes = Theme.all.order(:title)
+    @themes = Theme.order(:title).page(params[:page]).per(15)
   end
 
   def create

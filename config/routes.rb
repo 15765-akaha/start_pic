@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    get 'post_images/index'
+  end
 # admin
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -16,7 +19,8 @@ Rails.application.routes.draw do
   namespace :admins do
   	root 'home#top'
   	resources :themes, only: [:index, :create, :destroy, :edit, :update]
-  	resources :user_dates, only: [:index, :show, :edit, :update]
+	resources :user_dates, only: [:index, :show, :edit, :update]
+	resources :post_images, only: [:index, :destroy]  
   end
 
 # user
