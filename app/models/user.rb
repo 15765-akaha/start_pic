@@ -29,4 +29,11 @@ class User < ApplicationRecord
     end
   end
 
+  after_update do
+    if saved_change_to_attribute?(:accivement) #評価の際に値が変わった場合のみヒストリーを記録する。
+       history = accivement_histories.build(accivement: self.accivement) 
+       history.save!
+    end
+  end
+
 end
