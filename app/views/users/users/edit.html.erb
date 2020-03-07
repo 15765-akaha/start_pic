@@ -6,6 +6,11 @@
 
 
   <div class="container">
+
+ <div class="flash col-6">
+  <%= render partial: 'layouts/flashes' %>
+ </div>
+  
    <div class="col-6">
     <%= form_for(@user) do |f| %>
     <div class="form-group row">

@@ -12,7 +12,7 @@
 
   <body>
   <header class="header">
-   <nav class="navbar navbar-expand navbar-dark navbar-fixed-top", style="background-color: #2bc489;">
+   <nav class="navbar navbar-expand navbar-dark navbar-fixed-top">
       <div class="container">
 
       <div class="navbar-header">
@@ -43,7 +43,7 @@
         </li>
       </ul>
 
-      <% elsif admin_signed_in? %>
+      <% elsif request.fullpath.include? "admins"  %>
 
       <div class ="user_name">
        <span class="u h7 text-white strong">
@@ -93,6 +93,7 @@
       </div>
     </nav>
    </header>
+
 
    <%= yield %>
    

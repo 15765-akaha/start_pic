@@ -10,15 +10,18 @@ class Admins::ThemesController < ApplicationController
   def create
     @theme = Theme.new(theme_params)
     if @theme.save
+       flash[:success] = 'テーマを作成しました！'
        redirect_to admins_themes_path
     else
-       @themes = Theme.all.order(:title)
+       flash.now[:danger] = 'タイトルを入力してください'
+       @themes = Theme.order(:title).page(params[:page]).per(15)
        render :index
     end
   end
 
   def destroy
     @theme.destroy
+    flash[:danger] = 'テーマを削除しました'
     redirect_to admins_themes_path
   end
 
@@ -26,8 +29,13 @@ class Admins::ThemesController < ApplicationController
   end
 
   def update
-    @theme.update(theme_params)
-    redirect_to admins_themes_path
+    if @theme.update(theme_params)
+       flash[:success] = 'テーマを編集しました！'
+       redirect_to admins_themes_path
+    else
+       flash.now[:danger] = 'タイトルを入力してください'
+       render :edit
+    end
   end
 
   private
@@ -35,6 +43,6 @@ class Admins::ThemesController < ApplicationController
       @theme = Theme.find(params[:id])
    end
    def theme_params
-        params.require(:theme).permit(:title, :is_enabled)
+      params.require(:theme).permit(:title, :is_enabled)
    end
 end

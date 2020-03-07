@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 # admin
   namespace :admins do
   	root 'home#top'
-  	resources :themes, only: [:index, :create, :destroy, :edit, :update]
+  	resources :themes, except: [:new, :show]
 	resources :user_dates, only: [:index, :show, :edit, :update]
 	resources :post_images, only: [:index, :destroy]  
   end

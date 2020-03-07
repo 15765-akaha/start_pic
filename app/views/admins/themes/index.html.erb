@@ -1,6 +1,8 @@
 <div class="container">
   <h2>テーマ追加・一覧画面</h2>
 
+        <%= render partial: 'layouts/flashes' %>
+
     <div class="row d-flex justify-content-center">
     <%= form_for(@theme, url:admins_themes_path) do |f| %>
         <div class="form-group mb-2 form-inline">

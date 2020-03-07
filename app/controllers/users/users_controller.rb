@@ -13,8 +13,13 @@ class Users::UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:success] = '登録情報を変更しました！'
+      redirect_to user_path(@user.id)
+    else
+      flash.now[:danger] = '変更に失敗しました。'
+      render :edit
+    end
   end
 
   def withdrow

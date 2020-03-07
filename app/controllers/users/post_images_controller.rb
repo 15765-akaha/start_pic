@@ -25,16 +25,19 @@ class Users::PostImagesController < ApplicationController
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
     @post_image.theme_id = @theme.id
-    @post_image.save
-    redirect_to theme_path(@theme.id)
+    if @post_image.save
+      flash[:success] = '投稿しました！'
+      redirect_to theme_path(@theme.id)
+    end
   end
 
   def edit
   end
 
   def update
-    @post_image.update(post_image_params)
-    redirect_to post_image_path(@post_image)
+    if @post_image.update(post_image_params)
+       redirect_to post_image_path(@post_image)
+    end
   end
 
   def destroy

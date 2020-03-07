@@ -14,6 +14,10 @@
 
 @import "bootstrap";
 
+
+.navbar-expand {
+  background-color: #426e86;
+}
 /* トップページ */
 .jumbotron-extend {
   height : 600px;
@@ -44,6 +48,7 @@ background-position: center 30%;
   background-size: cover;
   background-position: center 30%;
   }
+
 
 .card {
   border: none;
@@ -79,6 +84,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: white;
 }
 .footer {
   position: absolute;
@@ -86,5 +92,5 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #2bc489;
+  background-color: #426e86;
 }
