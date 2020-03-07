@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_083213) do
+ActiveRecord::Schema.define(version: 2020_03_07_104621) do
+
+  create_table "accivement_histories", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "accivement"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -109,6 +116,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_083213) do
     t.boolean "is_enabled", default: true, null: false
     t.string "profile_image_id"
     t.integer "accivement", default: 0, null: false
+    t.integer "total_likes", default: 0, null: false
+    t.string "header_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
