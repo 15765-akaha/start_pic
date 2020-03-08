@@ -12,6 +12,7 @@ class User < ApplicationRecord
   # リレーション
   has_many :post_images, dependent: :destroy
   has_many :likes,		 dependent: :destroy
+  has_many :accivement_histories
   # ユーザーがお気に入りした投稿画像を集める
   has_many :likes_post_images, through: :likes, source: :post_image
   has_many :image_comments, dependent: :destroy
@@ -25,6 +26,13 @@ class User < ApplicationRecord
   def followed_by?(user) #フォロー側から見てフォローを既にしているかどうか。
     if user
       passive_relationships.find_by(following_id: user.id).present?
+    end
+  end
+
+  after_update do
+    if saved_change_to_attribute?(:accivement) #評価の際に値が変わった場合のみヒストリーを記録する。
+       history = accivement_histories.build(accivement: self.accivement) 
+       history.save!
     end
   end
 

@@ -1,24 +1,37 @@
-<div class="jumbotron jumbotron-user jumbotron-fluid">	
-  <div class="container-fluid jumbotron-container"> 
-    <%#= attachment_image_tag @user, :profile_image, fallback: 'main.jpg', class: "img-fluid" #%>
-  </div>
-</div>
-
 <div class="container">
  <div class="flash col-6">
   <%= render partial: 'layouts/flashes' %>
  </div>
 
+  <div class="row mt-5">
+    <h3>Profile</h3>
+  </div>
+
   <div class="row">
-    <div class="col-6">
-     <div class="row border-bottom pb-4">
-       <div class="user_date d-flex mt-5">
-        <%= attachment_image_tag @user, :profile_image, :fill,120,120, fallback: 'no_image.png', size: '120x120', class: "rounded" %>
-        <div class="user_name h3 "><%= @user.name %></div>
-        <div class="user_likes"><%= @total_likes %></div>
-        <%case @user.accivement %>
+      <div class="card mb-3" style="max-width: 500px;">
+      <div class="row no-gutters">
+        <div class="col-lg-6">
+          <%= attachment_image_tag @user, :profile_image, fallback: 'no_image.png', class: "rounded-circle img-fluid" %>
+        </div>
+        <div class="col-lg-6">
+         <!-- フォローボタン -->
+         <div id="follow_buttons_<%= @user.id %>" class="follow_button">
+           <%= render partial: 'follow_btn', locals: {user: @user} %>
+         </div>
+          <div class="card-body">
+
+            <h4 class="card-title"><%= @user.name %></h4>
+            <p class="card-text"><%= @user.introduction %></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="user_likes"><i class="fa fa-heart fa-3x good-heart" aria-hidden="true"></i><%= @total_likes %></div>
+        <% case @user.accivement %>
         <% when "BEGINNER"%>
-        <%= image_tag 'begginer.png', size: '60x60' %>
+        <%= image_tag 'begginer.png', size: '48x48' %>
         <% when "ROOKIE"%>
         <%= image_tag 'main.jpg', size: '60x60' %>
         <% when "CHARRENGER"%>
@@ -27,21 +40,12 @@
         <%= image_tag 'begginer.png', size: '60x60' %> 
         <% end %>      
         <%= @user.accivement%>
-       </div>
      </div>
     </div>
 
-   <div class="col-2">
-      <!-- フォローボタン -->
-      <div id="follow_buttons_<%= @user.id %>" class="follow_button">
-        <%= render partial: 'follow_btn', locals: {user: @user} %>
-      </div>
+
    </div>
   </div>
-
-    <div class="row pt-4">
-  		<p><%= @user.introduction %></p>
-    </div>
 
   </div>
  </div>
