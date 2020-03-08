@@ -1,2 +1,6 @@
-<p><i class="fa fa-heart good-heart" aria-hidden="true"></i>(<%= post_image.likes.count %>)
-   <i class="fa fa-comment-o" aria-hidden="true"></i>(<%= post_image.image_comments.count%>)</p>
+<p class="status-text"><i class="fa fa-heart good-heart" aria-hidden="true"></i><%= post_image.likes.count %>
+   <i class="fa fa-comment-o" aria-hidden="true"></i><%= post_image.image_comments.count%>
+   <% if current_user != post_image.user %>
+   <%= link_to "@"+post_image.user.name, user_path(post_image.user) %></p>
+    <% end %>
+   

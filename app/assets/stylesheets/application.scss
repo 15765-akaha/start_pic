@@ -50,25 +50,46 @@ background-position: center 30%;
   }
 
 
-.card {
+.card{
   border: none;
+  box-shadow: 0 0 8px gray;
 }
+
+// いいねボタン関連
 
 .likes_button {
   position: absolute;
   top: 10px;
   right: 10px;
+  display: none;
+}
+
+.like_active {
+  display: block;
 }
 
 .good-heart {
   color: rgb(235, 157, 235);
-  opacity: 0.5;
 }
 
 .no-heart {
   color: #6c757d;
 }
 
+.likes_status {
+  position: absolute;
+  bottom: 0px;
+  left: 5px;
+  display: none;
+}
+.status-text {
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 0 20px;
+}
+
+// 投稿画像詳細画面
 .image_box {
   position: relative;
   display: inline-block;
