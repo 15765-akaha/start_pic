@@ -88,6 +88,19 @@ background-position: center 30%;
   padding: 0 20px;
 }
 
+
+.user_date {
+  position: relative;
+}
+
+.user_accivement {
+  position: absolute;
+  top: -20px;
+  left: 60px;
+
+}
+
+
 // 投稿画像詳細画面
 .image_box {
   position: relative;
