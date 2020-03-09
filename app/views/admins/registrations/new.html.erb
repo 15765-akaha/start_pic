@@ -1,4 +1,8 @@
-<h2>Sign up</h2>
+<div class="container my-5">
+
+  <div class="row">
+    <div class="offset-sm-3 col-sm-6">
+    <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
