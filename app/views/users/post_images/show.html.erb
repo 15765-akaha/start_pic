@@ -5,6 +5,9 @@
       <div class="col-md-6 d-flex justify-content-center">
         <div class="image_box like-hover my-5">
           <%= attachment_image_tag @post_image, :image, class:"img-fluid" %>
+          <% if current_user == @post_image.user %>
+            <%= link_to "編集する", edit_post_image_path(@post_image.id), class:"page-link text-dark d-inline-block mt-2" %>
+          <% end %>
 
         <!-- いいねボタン -->
           <div id="likes_buttons_<%= @post_image.id %>" class="likes_button">
@@ -13,9 +16,10 @@
         </div>
       </div>
 
+
         <!-- ユーザープロフィール -->
     <div class="col-md-5 offset-1">
-     <div class="row border-bottom">
+     <div class="row">
       <div class="user_date d-flex justify-content-between mt-5">
         <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded-circle" %>
         <div class="user_name h3 "><%= link_to @post_image.user.name, user_path(@post_image.user) %></div>
@@ -26,12 +30,19 @@
         </div>
       </div>
      </div>
-
+        <!-- ステータス -->
+     <div class="row border-bottom">
+        <div id="likes_status_<%= @post_image.id %>" class="likes_status-active">
+         <%= render partial: 'users/likes/like_status', locals: {post_image: @post_image} %>
+        </div>
+     </div>
+     
         <!-- 投稿コメント -->
      <div class="row border-bottom">
       <div class="col-xs-8">
         <div class="card border-secondary mb-3">
-         <div class="card-body text-secondary">
+         <div class="card-body">
+         <p class="card-title text-secondary">投稿コメント</p>
          <p class="card-text"><%= @post_image.caption %></p>
          </div>
         </div>
@@ -41,7 +52,8 @@
         <!-- タグ -->
      <div class="row border-bottom">
       <div class="card border-secondary mb-3">
-        <div class="card-body text-secondary">
+        <div class="card-body">
+        <p class="card-title text-secondary">タグ</p>
          <h5 class="tag_list">
          <%= raw @post_image.tag_list.map{ |t| link_to t, tag_path(t), class:"badge badge-pill badge-success"}.join(' ') %>
          </h5>
@@ -49,14 +61,10 @@
       </div>
      </div>
 
-        <!-- ステータス -->
-        <div id="likes_status_<%= @post_image.id %>" class="likes_status">
-         <%= render partial: 'users/likes/like_status', locals: {post_image: @post_image} %>
-        </div>
-
-        <%= render partial: 'layouts/flashes' %>
         
         <!-- コメント欄 -->
+        <p class="text-secondary ml-1 mt-2">コメント</p>
+        <%= render partial: 'layouts/flashes' %>
         <div id="image_comments">
          <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
         </div>
@@ -67,13 +75,12 @@
        <div class="form-group">
         <%= form_with model: [@post_image, @image_comment] do |f| %>
         <%= f.text_area :comment, rows:'2', class:"form-control" %>
-        <%= f.submit :"コメントする" %>
+        <%= f.submit :"コメントする", class:"btn btn-info mt-2"%>
         <% end %>
        </div>
       </div>
      </div>
 
-  <%= link_to "編集する", edit_post_image_path(@post_image.id) %>
   
 
   </div>
