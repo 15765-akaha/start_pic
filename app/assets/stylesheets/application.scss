@@ -15,8 +15,8 @@
 @import "bootstrap";
 
 
-.navbar-expand {
-  background-color: #426e86;
+.navbar-expand-lg {
+  background-color: #2f3131;
 }
 /* トップページ */
 .jumbotron-extend {
@@ -52,6 +52,9 @@ background-position: center 30%;
 
 .card{
   border: none;
+}
+
+.like-hover {
   box-shadow: 0 0 8px gray;
 }
 
@@ -62,10 +65,7 @@ background-position: center 30%;
   top: 10px;
   right: 10px;
   display: none;
-}
-
-.like_active {
-  display: block;
+  opacity: 0.8;
 }
 
 .good-heart {
@@ -113,5 +113,5 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #426e86;
+  background-color: #2f3131;
 }
