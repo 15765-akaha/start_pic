@@ -8,11 +8,11 @@ class User < ApplicationRecord
   # refaile
   attachment :profile_image
   # 称号設定 0=beginner
-  enum accivement: [:BEGINNER, :ROOKIE, :CHALLENGER, :MASTER]
+  enum achivement: [:BEGINNER, :ROOKIE, :CHALLENGER, :MASTER]
   # リレーション
   has_many :post_images, dependent: :destroy
   has_many :likes,		 dependent: :destroy
-  has_many :accivement_histories
+  has_many :achivement_histories
   # ユーザーがお気に入りした投稿画像を集める
   has_many :likes_post_images, through: :likes, source: :post_image
   has_many :image_comments, dependent: :destroy
@@ -30,8 +30,8 @@ class User < ApplicationRecord
   end
 
   after_update do
-    if saved_change_to_attribute?(:accivement) #評価の際に値が変わった場合のみヒストリーを記録する。
-       history = accivement_histories.build(accivement: self.accivement) 
+    if saved_change_to_attribute?(:achivement) #評価の際に値が変わった場合のみヒストリーを記録する。
+       history = achivement_histories.build(achivement: self.achivement) 
        history.save!
     end
   end
