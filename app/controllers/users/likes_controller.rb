@@ -19,13 +19,13 @@ class Users::LikesController < ApplicationController
     total_likes = Like.where(post_image_id: user.post_images.ids).size
     case total_likes
     when 1..2
-      user.update(accivement: "BEGINNER")
+      user.update(achivement: "BEGINNER")
     when 3..4
-      user.update(accivement: "ROOKIE")
+      user.update(achivement: "ROOKIE")
     when 5..30
-      user.update(accivement: "CHALLENGER")
+      user.update(achivement: "CHALLENGER")
     when 31..40
-      user.update(accivement: "MASTER")
+      user.update(achivement: "MASTER")
     end
   end
 end

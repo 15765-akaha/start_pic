@@ -7,6 +7,7 @@ class Users::UsersController < ApplicationController
     @followings = @user.followings #フォロー
     @followers = @user.followers #フォロワー
     @total_likes = Like.where(post_image_id: @user.post_images.ids).size
+    @achivements = @user.achivement_histories
   end
 
   def edit
