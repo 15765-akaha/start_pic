@@ -21,7 +21,7 @@
                 <h4 class="card-title "><%= @user.name %></h4>
                 <i class="fa fa-heart fa-3x good-heart ml-5" aria-hidden="true"></i><%= @total_likes %>
                 <%= image_tag achivement_image_name(@user.achivement), size: '48x48' %>
-                <span class="acivement_name"><%= @user.achivement %></span>
+                <span class="achivement_name"><%= @user.achivement %></span>
               </div>
                 <!-- ユーザー自己紹介文 -->
                 <p class="card-text"><%= @user.introduction %></p>
@@ -50,6 +50,9 @@
       <li class="nav-item">
         <a class="nav-link" id="pills-follower-tab" data-toggle="pill" href="#pills-follower" role="tab" aria-controls="pills-follower" aria-selected="false">FOLLOWER(<%= @user.followers.count %>)</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-rank-tab" data-toggle="pill" href="#pills-rank" role="tab" aria-controls="pills-rank" aria-selected="false">RANK</a>
+      </li>
     </ul>
    </div>
   </div>
@@ -70,26 +73,12 @@
       <!-- フォロワー一覧 -->
       <div class="tab-pane fade" id="pills-follower" role="tabpanel" aria-labelledby="pills-follower-tab">
       <%= render partial: 'follows', locals: {users: @followers} %></div>
-    </div>
-  </div>
+      <!-- 称号一覧 -->
+      <div class="tab-pane fade" id="pills-rank" role="tabpanel" aria-labelledby="pills-rank-tab">
+      <%= render partial: 'rank', locals: {user: @user, achivements: @achivements} %></div>
+      </div> 
+  　</div>
 
   </div>
 
-
-
-  <div class="row">
-
-		  <% @achivements.each do |achivement| %>
-       <div class="col-md-3 mb-3">
-			   <div class="card">
-           <%# <%= image_tag acivement_image_name(achivement.achivement), size: '200x200', fallback: "no_image.png" ,class:"img-fluid card-img-top" %>
-          <div class="card-body">
-           <h5 class="card-title"><%= achivement.achivement %></h5>
-           <p class ="card-text">獲得日</p>
-           <p class ="card-text"><%= achivement.created_at.strftime('%Y/%m/%d') %></p>
-			   </div>
-			  </div>
-      </div>
-      <% end %>
-
-  </div>
+</div>

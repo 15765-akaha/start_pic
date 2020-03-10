@@ -4,11 +4,11 @@ module ApplicationHelper
         when "BEGINNER"
          'begginer.png'
         when "ROOKIE"
-         'main.jpg'
+         'rookie.png'
         when "CHALLENGER"
-         'begginer.png'
+         'challenger.png'
         when "MASTER"
-         'begginer.png'
+         'master.png'
         end 
     end       
 end
