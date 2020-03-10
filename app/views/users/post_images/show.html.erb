@@ -6,7 +6,7 @@
         <div class="image_box like-hover my-5">
           <%= attachment_image_tag @post_image, :image, class:"img-fluid" %>
           <% if current_user == @post_image.user %>
-            <%= link_to "編集する", edit_post_image_path(@post_image.id), class:"page-link text-dark d-inline-block mt-2" %>
+            <div><%= link_to "編集する", edit_post_image_path(@post_image.id), class:"page-link text-dark d-inline-block mt-2" %></div>
           <% end %>
 
         <!-- いいねボタン -->
