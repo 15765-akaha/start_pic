@@ -76,8 +76,8 @@ class Users::PostImagesController < ApplicationController
   end
 
   def ensure_correct_user
-    @user = PostImage.find(params[:user_id])
-   if current_user.id != @user.id
+    @post_image = PostImage.find(params[:id])
+   if current_user.id != @post_image.user.id
       flash[:danger] = "権限がありません"
       redirect_to user_path(current_user.id)
    end
