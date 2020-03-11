@@ -1,10 +1,18 @@
 <div class="container">
 
-<h1>新規投稿</h1>
+ <div class="row mt-5 mb-3">
+  <h3>新規投稿</h3>
+ </div>
+
+   <%= render partial: 'layouts/flashes' %>
+
+<% if params[:theme_id] %>
+
+  <h4>テーマ：<%= @theme.title %></h4>
 
   <%= form_for(@post_image, url:theme_post_images_path(@theme.id)) do |f| %>
 
-    <div class="row">
+    <div class="row mt-3">
       <div class="col-sm-12">
        <%= f.label :image, "投稿画像" %><br>
        <%= f.attachment_field :image , required:true %>
@@ -32,4 +40,44 @@
   <% end %>
     </div>
 
+<% else %>
+
+  <%= form_for(@post_image, url:post_images_path) do |f| %>
+
+    <div class="row mt-3">
+      <div class="col-sm-12">
+       <%= f.label :image, "投稿画像" %><br>
+       <%= f.attachment_field :image , required:true %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-5">
+       <%= f.label :caption, "投稿コメント" %><br>
+       <%= f.text_area :caption, class:"form-control", rows:"3", placeholder:"コメント" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-5">
+       <%= f.label :theme_id, "テーマ" %><br>
+       <%= f.collection_select :theme_id, Theme.all, :id, :title, prompt: "テーマを選択してください", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-sm-5">
+       <%= f.label :tag_list, "タグ" %><span class="small ml-3">複数の場合は（、）で区切ってください</span><br>
+       <%= f.text_field :tag_list, value: @post_image.tag_list.join('、'), class:"form-control", placeholder:"夜景、月、" %>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+     <div class="col-sm-5">
+       <%= f.submit "投稿する" %>
+     </div>
+  <% end %>
+    </div>
+
+  <% end %>
 </div>

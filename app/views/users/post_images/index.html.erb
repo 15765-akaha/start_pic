@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-theme jumbotron-fluid">	
+<div class="jumbotron jumbotron-post_image jumbotron-fluid">	
   <div class="container-fluid jumbotron-container">
         <h1 class="title ml-5 display-4 text-white">インスピレーションを受ける</h1>
         <%= form_tag(post_images_path, method: :get) do %>
@@ -9,6 +9,7 @@
 </div>
 
     <div class="container-fluid">
+      <%= render partial: 'layouts/flashes' %>
       <div class="row align-content-start">
         <div class="card-columns mx-4">
                 <%= render partial: 'users/post_images/image_index', locals: {post_images: @post_images} %>

@@ -37,9 +37,12 @@
 
         
             <!-- ステータス -->
-        <div class="row border-bottom">
-            <div id="likes_status_<%= @post_image.id %>" class="likes_status-active">
+        <div class="row border-bottom d-flex align-item-center">
+            <div id="likes_status_<%= @post_image.id %>" class="likes_status-active pt-1">
             <%= render partial: 'users/likes/like_status', locals: {post_image: @post_image} %>
+            </div>
+            <div class="theme-title">
+             <%= link_to @post_image.theme.title, theme_path(@post_image.theme), class:"btn btn-light ml-5"%>
             </div>
         </div>
         

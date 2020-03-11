@@ -1,6 +1,7 @@
 class Users::UsersController < ApplicationController
   before_action :authenticate_user! , except: [:show]
   before_action :set_user
+  before_action :ensure_correct_user, only: [:edit, :withdrow]
   def show
     @post_images = @user.post_images #投稿画像
     @like_post_images = @user.likes_post_images #いいねした画像
@@ -39,6 +40,14 @@ class Users::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
+  end
+
+  def ensure_correct_user
+    @user = User.find(params[:id])
+   if current_user.id != @user.id
+      flash[:danger] = "権限がありません"
+      redirect_to user_path(current_user.id)
+   end
   end
 
 end
