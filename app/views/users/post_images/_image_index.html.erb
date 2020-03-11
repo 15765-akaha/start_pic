@@ -4,6 +4,10 @@
       <%= attachment_image_tag post_image, :image, format: 'jpeg', class:"card-img img-fluid" %>
       <% end %>
 
+    <!-- 称号アイコン -->
+    <div class="user_achivement-p">
+      <%= image_tag achivement_image_name(post_image.user.achivement), size: '54x54' %>
+    </div>
 
     <!-- いいねボタン -->
     <div id="likes_buttons_<%= post_image.id %>" class="likes_button">
