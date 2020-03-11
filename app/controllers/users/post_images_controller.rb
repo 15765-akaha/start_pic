@@ -1,7 +1,7 @@
 class Users::PostImagesController < ApplicationController
  before_action :set_post_image, only: [:show, :edit, :update, :destroy]
  before_action :authenticate_user!, except: [:index, :show, :search]
-
+ before_action :ensure_correct_user, only: [:edit, :destroy]
   def index
     if params[:tag]
       @post_images = PostImage.tagged_with(params[:tag])
@@ -25,7 +25,7 @@ class Users::PostImagesController < ApplicationController
   end
 
   def create
-    if params[:theme_id]
+    if params[:theme_id] # テーマ部屋から投稿された場合
       @theme = Theme.find(params[:theme_id])
       @post_image = PostImage.new(post_image_params)
       @post_image.user_id = current_user.id
@@ -34,7 +34,7 @@ class Users::PostImagesController < ApplicationController
         flash[:success] = '投稿しました！'
         redirect_to theme_path(@theme.id)
       end
-    else
+    else # ヘッダーメニューから投稿された場合
       @post_image = PostImage.new(post_image_params)
       @post_image.user_id = current_user.id
       if @post_image.save
@@ -75,4 +75,11 @@ class Users::PostImagesController < ApplicationController
      params.require(:post_image).permit(:image, :caption, :tag_list, :theme_id)
   end
 
+  def ensure_correct_user
+    @user = PostImage.find(params[:user_id])
+   if current_user.id != @user.id
+      flash[:danger] = "権限がありません"
+      redirect_to user_path(current_user.id)
+   end
+  end
 end
