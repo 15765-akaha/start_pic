@@ -17,7 +17,9 @@
         <div class="user_date d-flex d-flex align-items-center mt-5">
             <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded-circle" %>
             <div class="user_name h3 pl-3 "><%= @post_image.user.name %></div>
-            <div class="user_accivement p"><%= @post_image.user.accivement %></div>
+            <div class="user_achivement">
+              <%= image_tag achivement_image_name(@post_image.user.achivement), size: '48x48' %>
+            </div>
         </div>
         </div>
 
