@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   	resources :themes, only: [:index, :show] do
 	  resources :post_images, only: [:new, :create]
   	end
-  	resources :post_images, only: [:index, :show, :edit, :update, :destroy] do
+  	resources :post_images do
   	  resource :likes, only:    [:create, :destroy]
   	  resources :image_comments, only: [:create, :destroy]
 	end

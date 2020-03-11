@@ -16,19 +16,37 @@ class Users::PostImagesController < ApplicationController
   end
 
   def new
-    @theme = Theme.find(params[:theme_id])
-    @post_image = PostImage.new
+   if params[:theme_id]
+     @theme = Theme.find(params[:theme_id])
+     @post_image = PostImage.new
+   else
+     @post_image = PostImage.new
+   end
   end
 
   def create
-    @theme = Theme.find(params[:theme_id])
-    @post_image = PostImage.new(post_image_params)
-    @post_image.user_id = current_user.id
-    @post_image.theme_id = @theme.id
-    if @post_image.save
-      flash[:success] = '投稿しました！'
-      redirect_to theme_path(@theme.id)
+    if params[:theme_id]
+      @theme = Theme.find(params[:theme_id])
+      @post_image = PostImage.new(post_image_params)
+      @post_image.user_id = current_user.id
+      @post_image.theme_id = @theme.id
+      if @post_image.save
+        flash[:success] = '投稿しました！'
+        redirect_to theme_path(@theme.id)
+      end
+    else
+      @post_image = PostImage.new(post_image_params)
+      @post_image.user_id = current_user.id
+      if @post_image.save
+        flash[:success] = '投稿しました！'
+        redirect_to post_images_path
+      else
+        flash.now[:danger] = 'テーマを選択してください'
+        render :new
+      end
     end
+
+
   end
 
   def edit
@@ -54,7 +72,7 @@ class Users::PostImagesController < ApplicationController
   end
 
   def post_image_params
-     params.require(:post_image).permit(:image, :caption, :tag_list)
+     params.require(:post_image).permit(:image, :caption, :tag_list, :theme_id)
   end
 
 end
