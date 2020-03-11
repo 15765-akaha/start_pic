@@ -41,13 +41,14 @@ background-size: cover;
 background-position: center 30%;
 }
 
-.jumbotron-user {
-  height : 300px;
-  min-height : 300px;
-  background-image: image-url("main.jpg");
+.jumbotron-post_image {
+  height : 350px;
+  min-height : 350px;
+  background-image: image-url("post_image_index.jpg");
   background-size: cover;
   background-position: center 30%;
-  }
+  opacity: 0.9;
+}
 
 
 .card{
