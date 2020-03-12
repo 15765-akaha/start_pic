@@ -11,6 +11,7 @@ class Users::ThemesController < ApplicationController
 
   def create
       @theme = Theme.new(theme_params)
+      @theme.create_user_id = current_user.id
    if @theme.save
        flash[:success] = 'テーマを作成しました！'
        redirect_to themes_path
