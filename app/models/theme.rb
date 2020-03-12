@@ -1,5 +1,5 @@
 class Theme < ApplicationRecord
-	validates :title, presence: true
+	validates :title, presence: true, uniqueness: true
 	has_many :post_images
 
 	def self.search(search) #テーマタイトルの検索

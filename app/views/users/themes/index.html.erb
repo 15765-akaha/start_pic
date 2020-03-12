@@ -32,11 +32,10 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          
+
           <div class="modal-body">
             <div class="row d-flex justify-content-center">
               <%= form_for(@theme) do |f| %>
-                <%= render partial: 'layouts/flashes' %>
                 <div class="form-group mb-2 form-inline">
                   <%= f.text_field :title, class: "form-control" %>
                   <%= f.submit "作成する", class: "btn btn-primary ml-2" %>
@@ -54,6 +53,7 @@
 
 
         <!-- テーマ部屋一覧 -->
+      <%= render partial: 'layouts/flashes' %>
         <div class="row">
           <%= render partial: 'themes', locals: {themes: @themes} %>
         </div>
