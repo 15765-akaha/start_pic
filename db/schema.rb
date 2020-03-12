@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_111220) do
+ActiveRecord::Schema.define(version: 2020_03_12_120909) do
 
   create_table "achivement_histories", force: :cascade do |t|
     t.integer "user_id"
@@ -101,13 +101,8 @@ ActiveRecord::Schema.define(version: 2020_03_12_111220) do
     t.boolean "is_enabled", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_themes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "create_user_id"
+    t.boolean "admin", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|
