@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :post_images, dependent: :destroy
   has_many :likes,		 dependent: :destroy
   has_many :achivement_histories
+  has_many :user_themes, dependent: :destroy
   # ユーザーがお気に入りした投稿画像を集める
   has_many :likes_post_images, through: :likes, source: :post_image
   has_many :image_comments, dependent: :destroy

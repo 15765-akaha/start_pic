@@ -1,6 +1,7 @@
 class Theme < ApplicationRecord
 	validates :title, presence: true, uniqueness: true
 	has_many :post_images
+	has_many :user_themes
 
 	def self.search(search) #テーマタイトルの検索
 	 if search # 非公開のテーマは除く
