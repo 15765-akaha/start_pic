@@ -1,5 +1,6 @@
 class Users::ThemesController < ApplicationController
   def index
+      @theme = Theme.new
     if params[:search] #検索が含まれていたら
       @themes = Theme.search(params[:search]).page(params[:page]).per(12)
     else
