@@ -4,7 +4,7 @@ class Admins::ThemesController < ApplicationController
 
   def index
     @theme = Theme.new
-    @themes = Theme.order(:title).page(params[:page]).per(15)
+    @themes = Theme.order(:title).page(params[:page]).per(12)
   end
 
   def create

@@ -3,7 +3,7 @@ class Users::ThemesController < ApplicationController
   def index
       @theme = Theme.new
     if params[:search] #検索が含まれていたら
-      @themes = Theme.search(params[:search]).page(params[:page]).per(16)
+      @themes = Theme.search(params[:search]).page(params[:page]).per(12)
     else
       @themes = Theme.where(is_enabled: true).page(params[:page]).per(12)
     end
@@ -17,7 +17,7 @@ class Users::ThemesController < ApplicationController
        redirect_to themes_path
    else
        flash.now[:danger] = 'テーマを作成できませんでした。'
-       @themes = Theme.order(:title).page(params[:page]).per(16)
+       @themes = Theme.order(:title).page(params[:page]).per(12)
        render :index
    end
   end
