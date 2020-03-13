@@ -51,10 +51,10 @@
         <div class="row border-bottom">
           <div class="col-xs-8">
             <div class="card border-secondary mb-3">
-            <div class="card-body">
-            <p class="card-title text-secondary">投稿コメント</p>
-            <p class="card-text"><%= @post_image.caption %></p>
-            </div>
+             <div class="card-body">
+              <p class="card-title text-secondary">投稿コメント</p>
+              <p class="card-text"><%= @post_image.caption %></p>
+             </div>
             </div>
           </div>
         </div>
@@ -63,39 +63,42 @@
         <div class="row border-bottom">
           <div class="card border-secondary mb-3">
             <div class="card-body">
-            <p class="card-title text-secondary">タグ</p>
-            <h5 class="tag_list">
-            <%= raw @post_image.tag_list.map{ |t| link_to t, tag_path(t), class:"badge badge-pill badge-success"}.join(' ') %>
-            </h5>
+             <p class="card-title text-secondary">タグ</p>
+             <h5 class="tag_list">
+             <%= raw @post_image.tag_list.map{ |t| link_to t, tag_path(t), class:"badge badge-pill badge-success"}.join(' ') %>
+             </h5>
             </div>
           </div>
         </div>
 
             
             <!-- コメント欄 -->
-            <p class="text-secondary ml-1 mt-2">コメント</p>
             <div id="image_comments">
-            <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
+              <p class="text-secondary ml-1 mt-2">コメント</p>
+              <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
             </div>
 
-      <% if user_signed_in? %>
+
             <!-- コメントフォーム -->
         <div class="row border-bottom">
           <div class="col-12">
-          <div class="form-group">
-            <%= form_with model: [@post_image, @image_comment] do |f| %>
-            <%= f.text_area :comment, rows:'2', class:"form-control" %>
-            <%= f.submit :"コメントする", class:"btn btn-info mt-2"%>
-            <% end %>
-          <% else %>
+           <% if user_signed_in? %>
+            <div class="form-group">
+              <%= form_with model: [@post_image, @image_comment] do |f| %>
+               <%= f.text_area :comment, rows:'2', class:"form-control" %>
+               <%= f.submit :"コメントする", class:"btn btn-info mt-2"%>
+              <% end %>
+            </div>
+           <% else %>
             <p class="text-secondary">会員登録するとコメントが可能になります。</p>
-          </div>
+           <% end %>
           </div>
         </div>
-      <% end %>
 
   
 
   </div>
- </div>
-</div>
+
+
+ </div> <!--row-->
+</div> <!--containe-->
