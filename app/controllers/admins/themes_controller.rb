@@ -9,7 +9,7 @@ class Admins::ThemesController < ApplicationController
 
   def create
     @theme = Theme.new(theme_params)
-    @theme.admin == true
+    @theme.admin = true
     if @theme.save
        flash[:success] = 'テーマを作成しました！'
        redirect_to admins_themes_path
