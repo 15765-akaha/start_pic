@@ -30,7 +30,7 @@
 
         <div class="row mt-3">
             <%= f.label :theme_id, "テーマ" %>
-            <%= f.collection_select :theme_id, Theme.all, :id, :title, class: "form-control" %>
+            <%= f.collection_select :theme_id, Theme.where(is_enabled: true), :id, :title, class: "form-control" %>
         </div>
 
         <div class="row mt-3">

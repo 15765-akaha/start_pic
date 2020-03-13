@@ -6,7 +6,9 @@
 
    <%= render partial: 'layouts/flashes' %>
 
-<% if params[:theme_id] %>
+ <!-- ジャンル部屋投稿 -->
+
+ <% if params[:theme_id] %>
 
   <h4>テーマ：<%= @theme.title %></h4>
 
@@ -37,10 +39,12 @@
      <div class="col-sm-5">
        <%= f.submit "投稿する" %>
      </div>
-  <% end %>
+ <% end %>
     </div>
 
 <% else %>
+
+ <!-- ヘッダー投稿 -->
 
   <%= form_for(@post_image, url:post_images_path) do |f| %>
 
@@ -61,7 +65,7 @@
     <div class="row">
       <div class="col-sm-5">
        <%= f.label :theme_id, "テーマ" %><br>
-       <%= f.collection_select :theme_id, Theme.all, :id, :title, prompt: "テーマを選択してください", class: "form-control" %>
+       <%= f.collection_select :theme_id, Theme.where(is_enabled: true), :id, :title, prompt: "テーマを選択してください", class: "form-control" %>
       </div>
     </div>
 

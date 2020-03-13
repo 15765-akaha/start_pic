@@ -8,6 +8,7 @@
           <% if current_user == @post_image.user %>
             <div><%= link_to "編集する", edit_post_image_path(@post_image.id), class:"page-link text-dark d-inline-block mt-2" %></div>
           <% end %>
+          <%= render partial: 'layouts/flashes' %>
 
         <!-- いいねボタン -->
           <div id="likes_buttons_<%= @post_image.id %>" class="likes_button">
@@ -73,7 +74,6 @@
             
             <!-- コメント欄 -->
             <p class="text-secondary ml-1 mt-2">コメント</p>
-            <%= render partial: 'layouts/flashes' %>
             <div id="image_comments">
             <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
             </div>
