@@ -1,10 +1,12 @@
 <div class="jumbotron jumbotron-post_image jumbotron-fluid">	
   <div class="container-fluid jumbotron-container">
         <h1 class="title ml-5 display-4 text-white">インスピレーションを受ける</h1>
-        <%= form_tag(post_images_path, method: :get) do %>
-        <%= text_field_tag :tag %>
-        <%= submit_tag :'Search', :name => nil %>
-        <% end %>
+        <div class="search-box ml-5 mt-3">
+          <%= form_tag(post_images_path, method: :get) do %>
+          <%= text_field_tag :tag %>
+          <%= submit_tag :'Search', :name => nil %>
+          <% end %>
+        </div>
   </div>
 </div>
 

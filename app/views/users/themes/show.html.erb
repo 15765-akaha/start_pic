@@ -3,13 +3,15 @@
         <h1 class="title ml-5 display-4 text-white"><%= @theme.title %></h1>
          <!-- 投稿メニュー -->
          <div class="theme-menu d-flex ml-5 mt-3">
-           <%= link_to "投稿する", new_theme_post_image_path(@theme.id), class:"btn btn-primary btn-sm ml-5" %>
+           <%= link_to "投稿する", new_theme_post_image_path(@theme.id), class:"btn btn-primary btn ml-5" %>
+        <% if user_signed_in? %>
           <% if current_user.id == @theme.create_user_id && @post_images.empty? %>
           <!-- テーマ編集ボタン -->
            <div class="edit-button ml-3">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#e-themeModalCenter">タイトルの編集</button>
+            <button type="button" class="btn btn-success btn-sm mt-1" data-toggle="modal" data-target="#e-themeModalCenter">タイトルの編集</button>
            </div>
           <% end %>
+        <% end %>
          </div>
   </div>
 </div>
@@ -40,7 +42,7 @@
           </div>
 
           <div class="modal-footer">
-            <%= link_to "投稿を削除する", theme_path(@theme), method: :delete, class:"btn btn-outline-danger" , data: { confirm: '本当に削除しますか?' } %>
+            <%= link_to "削除する", theme_path(@theme), method: :delete, class:"btn btn-outline-danger" , data: { confirm: '本当に削除しますか?' } %>
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
           </div>
         </div>
@@ -50,12 +52,11 @@
     <!-- 画像コーナー -->
       <%= render partial: 'layouts/flashes' %>
       <div class="row align-content-start">
-        <div class="card-columns mx-4">
-        
              <% if @post_images.present? %>
+             <div class="card-columns mx-4">
               <%= render partial: 'users/post_images/image_index', locals: {post_images: @post_images} %>
              <% else %>
-                <h2>まだ投稿がありません。チャレンジしませんか？</h2>
+                <h2 class="no-image-text ml-5">まだ投稿がありません。チャレンジしませんか？</h2>
              <% end %>
         </div>
                 <%= paginate @post_images %>

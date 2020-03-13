@@ -54,7 +54,11 @@ class Users::PostImagesController < ApplicationController
 
   def update
     if @post_image.update(post_image_params)
+       flash[:success] = '編集しました！'
        redirect_to post_image_path(@post_image)
+    else
+      flash.now[:danger] = '編集に失敗しました'
+      render :edit
     end
   end
 
