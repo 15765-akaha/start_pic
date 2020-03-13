@@ -20,13 +20,13 @@ Rails.application.routes.draw do
   	root 'home#top'
   	resources :themes, except: [:new, :show]
 	resources :user_dates, only: [:index, :show, :edit, :update]
-	resources :post_images, only: [:index, :destroy]  
+	resources :post_images, only: [:index, :destroy]
   end
 
 # user
   scope module: :users do
 	root 'home#top'
-  	resources :themes, only: [:index, :show] do
+  	resources :themes, except: [:new, :edit] do
 	  resources :post_images, only: [:new, :create]
   	end
   	resources :post_images do

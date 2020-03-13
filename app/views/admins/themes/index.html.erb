@@ -25,6 +25,7 @@
         <tr>
          <th>タイトル</th>
          <th>公開ステータス</th>
+         <th>作成者</th>
          <th colspan="2">管理</th>
         </tr>
       </thead>
@@ -40,6 +41,13 @@
             非公開
           <% end %>
          </td>
+         <td>
+          <% if theme.admin == true %>
+            管理者
+          <% else %>
+            ユーザー
+          <% end %>
+        </td>
          <td><%= link_to "編集する", edit_admins_theme_path(theme) %></td>
          <td><%= link_to "削除する", admins_theme_path(theme), method: :delete, data: { confirm: '削除しますか?' } %></td>
         </tr>
