@@ -10,5 +10,10 @@ module ApplicationHelper
         when "MASTER"
          'master.png'
         end 
-    end       
+    end
+    
+    def achivement_check(achivement) # ユーザーの称号でボタン権限をつける
+         achivement == "CHALLENGER" || achivement == "MASTER"
+    end
+        
 end

@@ -9,10 +9,12 @@
             <%= submit_tag :'Search', :name => nil %>
             <% end %>
           </div>
+        <% if user_signed_in? && achivement_check(current_user.achivement) %>
           <!-- テーマ作成ボタン -->
           <div class="new-button ml-3">
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#themeModalCenter">テーマを作成する</button>
           </div>
+        <% end %>
         </div>
   </div>
 </div>
