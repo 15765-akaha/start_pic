@@ -78,6 +78,7 @@
             <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
             </div>
 
+      <% if user_signed_in? %>
             <!-- コメントフォーム -->
         <div class="row border-bottom">
           <div class="col-12">
@@ -86,9 +87,12 @@
             <%= f.text_area :comment, rows:'2', class:"form-control" %>
             <%= f.submit :"コメントする", class:"btn btn-info mt-2"%>
             <% end %>
+          <% else %>
+            <p class="text-secondary">会員登録するとコメントが可能になります。</p>
           </div>
           </div>
         </div>
+      <% end %>
 
   
 
