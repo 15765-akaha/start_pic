@@ -1,26 +1,22 @@
 <div class="jumbotron jumbotron-extend jumbotron-fluid">	
   <div class="container-fluid jumbotron-container">
-		<h1 class="title ml-5 display-3">StartPic</h1>
-		<p class="subtitle ml-5">写真の世界に飛び込んで見よう</p>
-	</div>
-</div>
 
-<div class="container pb-4">
-  <div class="row">
-   <div class="col-md-6">
-   <%=link_to post_images_path do %>
-   <%= image_tag 'sp-camera.jpg', class: 'img-fluid' %>
-   <% end %>
+   <div class="main-message ml-5 text-white">
+    <%= render partial: 'layouts/flashes' %>
+		<h1 class="title display-3">StartPic</h1>
+		<p class="subtitle ">写真の世界に飛び込んでみませんか？</p>
+    <p>これからカメラを始める方向けの写真共有アプリです。<br>
+       出題されているテーマにチャレンジして撮った写真を皆でシェアしましょう！
+    </p>
+    <%= link_to "IMAGE SHOW", post_images_path, class:"btn btn-outline-light col-2"%><br>
    </div>
-   <div class="col-md-6">
-   <h1>About StartPic</h1>
-	  <p>これから写真を始める人たちへ。カメラが身近になった今日<br>
-	  	 自由だからこそ何を撮ればいいか迷ってしまう。そんな・・・
-	  </p>
-	  <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary ml-5" %>
-	  <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary ml-5" %>
-   </div>
-  </div>
+
+  <% unless user_signed_in? %>
+   <div class="session-box mt-5 ml-5">
+    <%= link_to "新規アカウント登録", new_user_registration_path, class: "btn btn-primary col-2" %>
+    <%= link_to "サインイン", new_user_session_path, class: "btn btn-success col-2" %>
+	 </div>
+  <% end %>
+
   </div>
 </div>
-
