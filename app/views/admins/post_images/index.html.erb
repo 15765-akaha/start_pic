@@ -4,8 +4,9 @@
   </div>
 
   <div class="row mt-3">
-    <div class="offset-sm-1 col-sm-10">
+   <div class="offset-sm-1 col-sm-10">
     <table class="table table-hover">
+
       <thead>
         <tr>
           <th>イメージ</th>
@@ -27,16 +28,14 @@
         </tr>
         <% end %>
       </tbody>
+
     </table>
   </div>
  </div>
 
 
-  <div class="container">
-    <div class="row">
-    <div class="col-md-4 offset-md-4 py-2 mt-5">
+  <div class="row d-flex justify-content-center">
     <%= paginate @post_images %>
-    </div>
-    </div>
-  </div> 
-</div>
+  </div>
+
+</div><!--container-->
