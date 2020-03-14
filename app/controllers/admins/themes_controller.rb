@@ -10,12 +10,7 @@ class Admins::ThemesController < ApplicationController
     themes.each do |theme|
       hash = {
         :theme => theme,
-        :create_user => theme.create_user_id.present? ? User.find(theme.create_user_id) : ""
-      #   if theme.create_user_id.present? #create_user_idが存在していたらユーザーモデルから合致する情報を取る。
-      #    :create_user => User.find(theme.create_user_id)
-      #   else #nill判定
-      #    :create_user => ""
-      #   end
+        :create_user => theme.create_user_id.present? ? User.find(theme.create_user_id) : "" #create_user_idをUserから参照：nill判定
       }
       array.push(hash)
    end
