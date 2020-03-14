@@ -24,6 +24,7 @@
         <thead>
           <tr>
           <th>タイトル</th>
+          <th>投稿数</th>
           <th>公開ステータス</th>
           <th>作成者</th>
           <th colspan="2">管理</th>
@@ -31,25 +32,31 @@
         </thead>
 
         <tbody>
-        <% @themes.each do |theme| %>
+        <% @view_themes.each do |theme| %>
           <tr>
-          <td><%= theme.title %></td>
+          <td><%= theme[:theme].title %></td>
+          <td><%= theme[:theme].post_images.count %>
           <td>
-            <% if theme.is_enabled == true %>
+            <% if theme[:theme].is_enabled == true %>
               公開
           　<% else %>
               非公開
             <% end %>
           </td>
           <td>
-            <% if theme.admin == true %>
-              管理者
+            <% if theme[:create_user].present? %>
+              <%= link_to theme[:create_user].name, user_path(theme[:create_user].id) %>
             <% else %>
-              ユーザー
+               管理者
             <% end %>
           </td>
-          <td><%= link_to "編集する", edit_admins_theme_path(theme) %></td>
-          <td><%= link_to "削除する", admins_theme_path(theme), method: :delete, data: { confirm: '削除しますか?' } %></td>
+          <td><%= link_to "編集する", edit_admins_theme_path(theme[:theme]) %></td>
+          <td><% if theme[:theme].post_images.empty? %>
+              <%= link_to "削除する", admins_theme_path(theme[:theme]), method: :delete, data: { confirm: '削除しますか?' } %>
+              <% else %>
+              すでに投稿が存在します。
+              <% end %>
+          </td>
           </tr>
           <% end %>
       </table>
@@ -57,7 +64,7 @@
     </div>
 
   <div class="row d-flex justify-content-center">
-    <%= paginate @themes %>
+    <%= paginate @view_themes %>
   </div>
 
 </div><!--container-->

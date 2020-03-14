@@ -29,11 +29,21 @@ class User < ApplicationRecord
     end
   end
 
-  after_update do
-    if saved_change_to_attribute?(:achivement) #評価の際に値が変わった場合のみヒストリーを記録する。
-       history = achivement_histories.build(achivement: self.achivement) 
-       history.save!
+  def appraise_user! #ユーザーの合計いいね数に応じて評価をして称号を与える
+    total_likes = Like.where(post_image_id: self.post_images.ids).size
+    case total_likes
+    when 1..5
+      self.achivement = "BEGINNER"
+    when 6..10
+      self.achivement = "ROOKIE"
+    when 11..15
+      self.achivement = "CHALLENGER"
+    when 16..40
+      self.achivement = "MASTER"
+    end
+    if will_save_change_to_attribute?(:achivement) #現状の称号と変化があればヒストリーを記録する。
+      achivement_histories.new(achivement: self.achivement)
+      save!
     end
   end
-
 end

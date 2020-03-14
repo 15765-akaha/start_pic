@@ -4,9 +4,18 @@ class Admins::ThemesController < ApplicationController
 
   def index
     @theme = Theme.new
-    @themes = Theme.order(:title).page(params[:page]).per(12)
-  end
+    themes = Theme.order(:title).all
 
+    array = [] #テーマ部屋と作成したユーザーの情報を取ってビューでeachを回すために配列を用意
+    themes.each do |theme|
+      hash = {
+        :theme => theme,
+        :create_user => theme.create_user_id.present? ? User.find(theme.create_user_id) : "" #create_user_idをUserから参照：nill判定
+      }
+      array.push(hash)
+   end
+      @view_themes = Kaminari.paginate_array(array).page(params[:page]).per(12) #配列用のページネーションメソッド
+end
   def create
     @theme = Theme.new(theme_params)
     @theme.admin = true
@@ -14,9 +23,8 @@ class Admins::ThemesController < ApplicationController
        flash[:success] = 'テーマを作成しました！'
        redirect_to admins_themes_path
     else
-       flash.now[:danger] = 'タイトルを入力してください'
-       @themes = Theme.order(:title).page(params[:page]).per(15)
-       render :index
+       flash[:danger] = '同タイトルが存在します'
+       redirect_to admins_themes_path
     end
   end
 
