@@ -15,6 +15,12 @@
 @import "bootstrap";
 
 
+a {
+  color: #2f3131;
+  text-decoration: none;
+  background-color: transparent;
+}
+
 .navbar-expand-lg {
   background-color: #2f3131;
 }
@@ -106,6 +112,14 @@ background-position: center 30%;
   position: relative;
 }
 
+// ユーザー詳細画面関連
+
+// ユーザーナビ
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #f9ba32;
+}
 
 // 称号関連
 

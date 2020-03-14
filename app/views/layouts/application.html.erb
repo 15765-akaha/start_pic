@@ -73,7 +73,7 @@
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <%= attachment_image_tag current_user, :profile_image, :fill,50,50, fallback: 'no_image.png', size: '50x50', class: "rounded-circle" %>&nbsp&nbsp<%= current_user.name %>
+           <%= attachment_image_tag current_user, :profile_image, :fill,50,50, fallback: 'no_image_user.jpg', size: '50x50', class: "rounded-circle" %>&nbsp&nbsp<%= current_user.name %>
          </a>
          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
            <%= link_to user_path(current_user), class: "dropdown-item" do %><i class="fa fa-user-circle-o" aria-hidden="true"></i> MyPage<% end %>
