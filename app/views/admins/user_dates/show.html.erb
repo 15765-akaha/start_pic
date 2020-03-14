@@ -23,7 +23,7 @@
       <tbody>
         <tr>
           <td><%= @user.id %></td>
-          <td><%= attachment_image_tag @user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '60x60', class: "rounded" %>
+          <td><%= attachment_image_tag @user, :profile_image, :fill,60,60, fallback: 'no_image_user.jpg', size: '60x60', class: "rounded" %>
           <td><%= @user.name %></td>
           <td><%= @user.email %></td>
           <td><%= @user.post_images.count %>
