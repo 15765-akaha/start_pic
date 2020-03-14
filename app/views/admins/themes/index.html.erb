@@ -6,7 +6,7 @@
     <div class="row d-flex justify-content-center">
     <%= form_for(@theme, url:admins_themes_path) do |f| %>
         <div class="form-group mb-2 form-inline">
-        <%= f.text_field :title, class: "form-control" %>
+        <%= f.text_field :title, required:true ,class: "form-control" %>
         <div class="form-check ml-2">
           <%= f.radio_button :is_enabled, :true %>
           <%= f.label :is_enabled, "公開" %>
