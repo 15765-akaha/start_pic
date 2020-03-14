@@ -18,13 +18,13 @@ class Users::LikesController < ApplicationController
     user = @post_image.user # いいねがされた時に、そのユーザーの投稿画像のいいね数に応じて称号を評価する。
     total_likes = Like.where(post_image_id: user.post_images.ids).size
     case total_likes
-    when 1..2
+    when 1..5
       user.update(achivement: "BEGINNER")
-    when 3..4
+    when 6..10
       user.update(achivement: "ROOKIE")
-    when 5..30
+    when 11..15
       user.update(achivement: "CHALLENGER")
-    when 31..40
+    when 16..40
       user.update(achivement: "MASTER")
     end
   end
