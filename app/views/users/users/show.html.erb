@@ -1,54 +1,84 @@
-<div class="jumbotron jumbotron-user jumbotron-fluid">	
-  <div class="container-fluid jumbotron-container"> 
-    <%#= attachment_image_tag @user, :profile_image, fallback: 'main.jpg', class: "img-fluid" #%>
-  </div>
-</div>
-
 <div class="container">
-  <div class="row">
-    <div class="col-6">
-     <div class="row border-bottom pb-4">
-       <div class="user_date d-flex mt-5">
-        <%= attachment_image_tag @user, :profile_image, :fill,120,120, fallback: 'no_image.png', size: '120x120', class: "rounded" %>
-        <div class="user_name h3 "><%= @user.name %></div>
-        <div class="user_likes">いいね</div>
-        <div class="user_accivement p"><%= @user.accivement %></div>
-       </div>
-     </div>
-    </div>
+ <div class="flash col-6 mt-3">
+  <%= render partial: 'layouts/flashes' %>
+ </div>
 
-   <div class="col-2">
-   		<% if current_user.id == @user.id %>
-			<%= link_to "プロフィール編集", edit_user_path(@user), class:"btn btn-primary" %>
-   		<% end %>
+  <div class="row mt-5">
+    <h3>Profile</h3>
+  </div>
+
+  <div class="row border-bottom mt-5">
+    <div class="card mb-3 col-6">
+      <div class="row no-gutters">
+          <!--プロフィール画像 -->
+          <div class="col-lg-3">
+            <%= attachment_image_tag @user, :profile_image, :fill,200,200, fallback: 'no_image_user.jpg', size: '200x200', class: "rounded-circle img-fluid" %>
+          </div>
+          <!-- ユーザー情報 -->
+          <div class="col-lg-9">
+            <div class="card-body">
+              <div class="user-info d-flex">
+                <h4 class="card-title "><%= @user.name %></h4>
+                <i class="fa fa-heart fa-3x good-heart ml-5" aria-hidden="true"></i><%= @total_likes %>
+                <%= image_tag achivement_image_name(@user.achivement), size: '48x48' %>
+                <span class="achivement_name"><%= @user.achivement %></span>
+              </div>
+                <!-- ユーザー自己紹介文 -->
+                <p class="card-text"><%= @user.introduction %></p>
+
+                <!-- フォローボタン -->
+                <div id="follow_buttons_<%= @user.id %>" class="follow_button">
+                <%= render partial: 'follow_btn', locals: {user: @user} %>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- ピル部分 -->
+    <div class="col-md-6 d-flex align-items-end">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-post-tab" data-toggle="pill" href="#pills-post" role="tab" aria-controls="pills-post" aria-selected="true">POST(<%= @user.post_images.count %>)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-favorite-tab" data-toggle="pill" href="#pills-favorite" role="tab" aria-controls="pills-favorite" aria-selected="false">FAVORITE(<%= @user.likes_post_images.count %>)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-follow-tab" data-toggle="pill" href="#pills-follow" role="tab" aria-controls="pills-follow" aria-selected="false">FOLLOW(<%= @user.followings.count %>)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-follower-tab" data-toggle="pill" href="#pills-follower" role="tab" aria-controls="pills-follower" aria-selected="false">FOLLOWER(<%= @user.followers.count %>)</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-rank-tab" data-toggle="pill" href="#pills-rank" role="tab" aria-controls="pills-rank" aria-selected="false">RANK</a>
+      </li>
+    </ul>
    </div>
   </div>
 
-    <div class="row pt-4">
-  		<p><%= @user.introduction %></p>
-    </div>
+  <div class="container mt-2">
 
-  </div>
- </div>
-</div>
-
-  <div class="container mt-5">
-    <div class="row align-content-start">
-      <h4>投稿画像</h4>
-      <div class="card-deck">
-		   <% @post_images.each do |post_image| %>
-			 <div class="col-md-4 mb-3">
-			   <div class="card">
-			   <%= link_to post_image_path(post_image) do %>
-			   <%= attachment_image_tag post_image, :image, :fill,400,300, format: 'jpeg', class:"img-fluid" %>　
-			   <% end %>
-			   </div>
-			 </div>
-		   <% end %>
+    <!-- パネル部分 -->
+    <div class="tab-content mt-5" id="pills-tabContent">
+      <!-- 投稿画像 -->
+      <div class="tab-pane fade show active" id="pills-post" role="tabpanel" aria-labelledby="pills-post-tab">
+      <%= render partial: 'user_post_images', locals: {post_images: @post_images} %></div>
+      <!-- お気に入り画像 -->
+      <div class="tab-pane fade" id="pills-favorite" role="tabpanel" aria-labelledby="pills-favorite-tab">
+      <%= render partial: 'user_post_images', locals: {post_images: @like_post_images} %></div>
+      <!-- フォロー一覧 -->
+      <div class="tab-pane fade" id="pills-follow" role="tabpanel" aria-labelledby="pills-follow-tab">
+      <%= render partial: 'follows', locals: {users: @followings} %></div>
+      <!-- フォロワー一覧 -->
+      <div class="tab-pane fade" id="pills-follower" role="tabpanel" aria-labelledby="pills-follower-tab">
+      <%= render partial: 'follows', locals: {users: @followers} %></div>
+      <!-- 称号一覧 -->
+      <div class="tab-pane fade" id="pills-rank" role="tabpanel" aria-labelledby="pills-rank-tab">
+      <%= render partial: 'rank', locals: {user: @user, achivements: @achivements} %></div>
       </div>
-    </div>
-  </div>
- </div>
+  　</div>
 
- 
+  </div>
+
 </div>

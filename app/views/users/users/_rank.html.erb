@@ -1,0 +1,27 @@
+  <div class="row">
+
+      <div class="col-md-3 mb-3">
+		<div class="card">
+           <%= image_tag 'begginer.png', size: '150x150', class:"img-fluid card-img-top" %>
+         <div class="card-body">
+           <h5 class="card-title">BEGGINER</h5>
+           <p class ="card-text">獲得日</p>
+           <p class ="card-text"><%= user.created_at.strftime('%Y/%m/%d') %></p>
+		 </div>
+		</div>
+      </div>
+
+	 <% achivements.each do |achivement| %>
+       <div class="col-md-3 mb-3">
+		<div class="card">
+           <%= image_tag achivement_image_name(achivement.achivement), size: '150x150' ,class:"img-fluid card-img-top" %>
+           <div class="card-body">
+            <h5 class="card-title"><%= achivement.achivement %></h5>
+            <p class ="card-text">獲得日</p>
+            <p class ="card-text"><%= achivement.created_at.strftime('%Y/%m/%d') %></p>
+		   </div>
+	    </div>
+       </div>
+      <% end %>
+      
+  </div>

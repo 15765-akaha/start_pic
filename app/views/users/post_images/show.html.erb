@@ -1,42 +1,106 @@
 <div class="container">
  <div class="row">
 
+        <!-- 投稿画像 -->
+  <div class="col-md-6 d-flex justify-content-center">
+        <div class="image_box like-hover my-5">
+          <%= attachment_image_tag @post_image, :image, class:"img-fluid" %>
+          <% if current_user == @post_image.user %>
+            <div><%= link_to "編集する", edit_post_image_path(@post_image.id), class:"page-link text-dark d-inline-block mt-2" %></div>
+          <% end %>
+          <%= render partial: 'layouts/flashes' %>
 
-    <div class="col-md-7">
-      <div class="image_box mt-5">
-        <%= attachment_image_tag @post_image, :image, class:"img-fluid " %>
-      </div>
-    </div>
-
-    <div class="col-md-5">
-     <div class="row border-bottom">
-      <div class="user_date d-flex mt-5">
-        <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded" %>
-        <div class="user_name h3 "><%= link_to @post_image.user.name, user_path(@post_image.user) %></div>
-        <div class="user_likes">いいね</div>
-        <div class="user_accivement p"><%= @post_image.user.accivement %></div>
-      </div>
-     </div>
-
-
-     <div class="row border-bottom">
-        <div class="card border-secondary mb-3">
-         <div class="card-body text-secondary">
-         <p class="card-text"><%= @post_image.caption %></p>
-         </div>
+        <!-- いいねボタン -->
+          <div id="likes_buttons_<%= @post_image.id %>" class="likes_button">
+          <%= render partial: 'users/likes/like', locals: {post_image: @post_image} %>
+          </div>
         </div>
-     </div>
-
-     <div class="row border-bottom">
-     <div class="card border-secondary mb-3">
-      <div class="card-body text-secondary">
-      <p class="card-text">タグ</p>
-      </div>
-     </div>
   </div>
 
-  <%= link_to "編集する", edit_post_image_path(@post_image.id) %>
-  <%= link_to "削除する", post_image_path(@post_image.id), method: :delete, class:"btn btn-danger" %>
-    </div>
- </div>
-</div>
+
+        <!-- ユーザーインフォメーション -->
+  <div class="col-md-5 offset-1">
+
+        <!-- プロフィール -->
+        <div class="row">
+          <div class="user_date d-flex align-items-center mt-5">
+            <%= link_to user_path(@post_image.user) do %>
+            <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded-circle" %>
+            <% end %>
+            <div class="user_name h3 mx-3 "><%= link_to @post_image.user.name, user_path(@post_image.user) %></div>
+            <div class="user_achivement">
+              <%= image_tag achivement_image_name(@post_image.user.achivement), size: '48x48' %>
+            </div>
+            <!-- フォローボタン -->
+            <div id="follow_buttons_<%= @post_image.user.id %>" class="follow_button">
+              <%= render partial: 'users/users/follow_btn', locals: {user: @post_image.user} %>
+            </div>
+          </div>
+        </div>
+
+        
+            <!-- ステータス -->
+        <div class="row border-bottom d-flex align-item-center">
+            <div id="likes_status_<%= @post_image.id %>" class="likes_status-active pt-1">
+            <%= render partial: 'users/likes/like_status', locals: {post_image: @post_image} %>
+            </div>
+            <div class="theme-title">
+             <%= link_to @post_image.theme.title, theme_path(@post_image.theme), class:"btn btn-light ml-5"%>
+            </div>
+        </div>
+        
+            <!-- 投稿コメント -->
+        <div class="row border-bottom">
+          <div class="col-xs-8">
+            <div class="card border-secondary mb-3">
+             <div class="card-body">
+              <p class="card-title text-secondary">投稿コメント</p>
+              <p class="card-text"><%= @post_image.caption %></p>
+             </div>
+            </div>
+          </div>
+        </div>
+
+            <!-- タグ -->
+        <div class="row border-bottom">
+          <div class="card border-secondary mb-3">
+            <div class="card-body">
+             <p class="card-title text-secondary">タグ</p>
+             <h5 class="tag_list">
+             <%= raw @post_image.tag_list.map{ |t| link_to t, tag_path(t), class:"badge badge-pill badge-success"}.join(' ') %>
+             </h5>
+            </div>
+          </div>
+        </div>
+
+            
+            <!-- コメント欄 -->
+            <div id="image_comments">
+              <p class="text-secondary ml-1 mt-2">コメント</p>
+              <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
+            </div>
+
+
+            <!-- コメントフォーム -->
+        <div class="row border-bottom">
+          <div class="col-12">
+           <% if user_signed_in? %>
+            <div class="form-group">
+              <%= form_with model: [@post_image, @image_comment] do |f| %>
+               <%= f.text_area :comment, rows:'2', class:"form-control" %>
+               <%= f.submit :"コメントする", class:"btn btn-info mt-2"%>
+              <% end %>
+            </div>
+           <% else %>
+            <p class="text-secondary">会員登録するとコメントが可能になります。</p>
+           <% end %>
+          </div>
+        </div>
+
+  
+
+  </div>
+
+
+ </div> <!--row-->
+</div> <!--containe-->

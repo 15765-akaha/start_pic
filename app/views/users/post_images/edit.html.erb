@@ -1,5 +1,5 @@
-<div class="container">
- <div class="row">
+<div class="container pb-5">
+ <div class="row mt-5">
     <h2>投稿画像編集</h2>
  </div>
 
@@ -8,38 +8,42 @@
         <div class="col-md-7">
         <div class="image_box mt-5">
             <%= attachment_image_tag @post_image, :image, class:"img-fluid " %>
-            <%= f.attachment_field :image %>
         </div>
         </div>
 
-        <div class="col-md-5">
+     <div class="col-md-5">
         <div class="row border-bottom">
-        <div class="user_date d-flex mt-5">
-            <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded" %>
-            <div class="user_name h3 "><%= link_to @post_image.user.name, user_path(@post_image.user) %></div>
-            <div class="user_likes">いいね</div>
-            <div class="user_accivement p"><%= @post_image.user.accivement %></div>
+        <div class="user_date d-flex d-flex align-items-center mt-5">
+            <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded-circle" %>
+            <div class="user_name h3 pl-3 "><%= @post_image.user.name %></div>
+            <div class="user_achivement">
+              <%= image_tag achivement_image_name(@post_image.user.achivement), size: '48x48' %>
+            </div>
         </div>
         </div>
 
 
         <div class="row">
+            <%= f.label :caption, "投稿コメント" %>
             <%= f.text_area :caption, rows:'3', class:"form-control" %>
         </div>
 
-        <div class="row border-bottom">
-         <div class="card border-secondary mb-3">
-         <div class="card-body text-secondary">
-        <p class="card-text">タグ</p>
-         </div>
-         </div>
+        <div class="row mt-3">
+            <%= f.label :theme_id, "テーマ" %>
+            <%= f.collection_select :theme_id, Theme.where(is_enabled: true), :id, :title, class: "form-control" %>
         </div>
 
-        <%= f.submit :"変更する", class:"btn btn-primary" %>
-
+        <div class="row mt-3">
+            <%= f.label :tag_list, "タグ" %><span class="small ml-3">複数の場合は（、）で区切ってください</span><br>
+            <%= f.text_field :tag_list, value: @post_image.tag_list.join('、'), class:"form-control" %>
+        </div>
+        <div class="row mt-5">
+            <%= f.submit :"内容を変更する", class:"btn btn-primary" %>
+        </div>
     <% end %>
+        <div class="row mt-5">
+            <%= link_to "投稿を削除する", post_image_path(@post_image.id), method: :delete, class:"btn btn-danger" , data: { confirm: 'これまでに獲得したいいねやコメントは消失しますが、よろしいですか?' } %>
+        </div>
+     </div>
     </div>
-
-    </div>
- </div>
 </div>

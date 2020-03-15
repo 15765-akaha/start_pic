@@ -14,6 +14,20 @@
 
 @import "bootstrap";
 
+
+.navbar-expand-lg {
+  background-color: #2f3131;
+}
+
+.navbar-brand {
+  background-image: image-url("start_pic.png");
+  background-size: cover;
+  background-position: center;
+  height: 60px;
+  width: 250px;
+}
+
+
 /* トップページ */
 .jumbotron-extend {
   height : 600px;
@@ -30,24 +44,104 @@
 }
 
 .jumbotron-theme {
-height : 300px;
+height : 350px;
 min-height : 300px;
 background-image: image-url("user_theme.jpg");
 background-size: cover;
 background-position: center 30%;
 }
 
-.jumbotron-user {
-  height : 300px;
+.jumbotron-post_image {
+  height : 350px;
   min-height : 300px;
-  background-image: image-url("main.jpg");
+  background-image: image-url("post_image_index.jpg");
   background-size: cover;
   background-position: center 30%;
-  }
-
-.card {
-  border: none;
+  opacity: 0.9;
 }
+
+
+.card{
+  border: none;
+  background-color: #fbf1e5;
+}
+
+
+// いいねボタン関連
+
+.likes_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+  opacity: 0.8;
+}
+
+.good-heart {
+  color: rgb(235, 157, 235);
+  opacity: 0.8;
+}
+
+.no-heart {
+  color: #616364;
+}
+
+.likes_status {
+  position: absolute;
+  bottom: 0px;
+  left: 5px;
+  display: none;
+}
+
+
+.status-text {
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 0 20px;
+}
+
+
+.user_date {
+  position: relative;
+}
+
+// ユーザー詳細画面関連
+
+// ユーザーナビ
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #f9ba32;
+}
+
+// 称号関連
+
+.user_achivement {
+  position: absolute;
+  top: -20px;
+  left: 65px;
+}
+
+.user_achivement-p {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  opacity: 0.8;
+  display: none;
+}
+
+.achivement_name {
+  font-style: italic;
+}
+
+
+// 投稿画像詳細画面
+.image_box {
+  position: relative;
+  display: inline-block;
+}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -57,13 +151,14 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+  background-color: #fbf1e5;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #2bc489;
+  height: 80px;
+  background-color: #2f3131;
 }

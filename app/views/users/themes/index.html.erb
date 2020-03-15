@@ -1,25 +1,66 @@
 <div class="jumbotron jumbotron-theme jumbotron-fluid">	
   <div class="container-fluid jumbotron-container">
         <h1 class="title ml-5 display-4 text-white">テーマにチャレンジ！</h1>
+        <div class="theme-box d-flex ml-5 mt-3">
+          <!-- 検索フォーム -->
+          <div class="search-form">
+            <%= form_tag(themes_path, method: :get) do %>
+            <%= text_field_tag :search %>
+            <%= submit_tag :'Search', :name => nil %>
+            <% end %>
+          </div>
+        <% if user_signed_in? && achivement_check(current_user.achivement) %>
+          <!-- テーマ作成ボタン -->
+          <div class="new-button ml-3">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#themeModalCenter">テーマを作成する</button>
+          </div>
+        <% end %>
+        </div>
   </div>
 </div>
 
+
   <div class="container-fluid">
-        <div class="card-group">
-            <div class="row">
-                <% @themes.each do |theme| %>
-                <div class="col-3 mb-2">
-                 <div class="card" style="width: 20rem;">
-                    <%= link_to theme_path(theme) do %>
-                    <%= attachment_image_tag theme.post_images.sample, :image, :fill, 320, 320,format: 'jpeg', fallback: 'no_image.png', class: 'card-img-top' %>　
-                    <div class="card-body">
-                    <h5 class="card-title text-muted"><%= theme.title %></h5>
-                    <h6 class="card-title text-muted">投稿数:<%= theme.post_images.count %></h6>
-                    <% end %>
-                    </div>
-                 </div>
+
+
+
+<!-- テーマ作成モーダル -->
+    <div class="modal fade" id="themeModalCenter" tabindex="-1" role="dialog" aria-labelledby="themeModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title" id="themeModalCenterTitle">テーマの作成<span class="small ml-3">※同じタイトルのテーマは作成できません。</span></h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="row d-flex justify-content-center">
+              <%= form_for(@theme) do |f| %>
+                <div class="form-group mb-2 form-inline">
+                  <%= f.text_field :title, class: "form-control" %>
+                  <%= f.submit "作成する", class: "btn btn-primary ml-2" %>
                 </div>
-                <% end %>
+              <% end %>
             </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">閉じる</button>
+          </div>
         </div>
-  </div>
+      </div>
+    </div>
+
+
+        <!-- テーマ部屋一覧 -->
+      <%= render partial: 'layouts/flashes' %>
+        <div class="row">
+          <%= render partial: 'themes', locals: {themes: @themes} %>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+          <%= paginate @themes %>
+        </div>
+</div>

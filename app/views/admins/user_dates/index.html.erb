@@ -1,2 +1,53 @@
-<h1>Admins::UserDates#index</h1>
-<p>Find me in app/views/admins/user_dates/index.html.erb</p>
+<div class="container my-5">
+  <div class="row">
+    <h2>ユーザー情報一覧</h2>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ユーザーID</th>
+          <th>イメージ</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>投稿数</th>
+          <th>ランク</th>
+          <th>ステータス</th>
+          <th>編集</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= attachment_image_tag user, :profile_image, :fill,60,60, fallback: 'no_image_user.jpg', size: '60x60', class: "rounded" %>
+          <td><%= link_to user_path(user) do %>
+              <%= user.name %>(ユーザーページ)
+              <% end %>
+            </td>
+          <td><%= user.email %></td>
+          <td><%= user.post_images.count %>
+          <td><%= user.achivement %></td>
+          <td><% if user.is_enabled == true %>
+              有効会員
+              <% else %>
+              退会済み
+              <% end %>
+          </td>
+          <td><%= link_to '管理用画面',admins_user_date_path(user) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+ </div>
+
+
+  <div class="row d-flex justify-content-center">
+    <%= paginate @users %>
+  </div>
+
+</div><!--container-->

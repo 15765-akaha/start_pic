@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    get 'post_images/index'
+  end
 # admin
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -15,24 +18,26 @@ Rails.application.routes.draw do
 # admin
   namespace :admins do
   	root 'home#top'
-  	resources :themes, only: [:index, :create, :destroy, :edit, :update]
-  	resources :user_dates, only: [:index, :show, :edit, :update]
+  	resources :themes, except: [:new, :show]
+	resources :user_dates, only: [:index, :show, :edit, :update]
+	resources :post_images, only: [:index, :destroy]
   end
 
 # user
   scope module: :users do
 	root 'home#top'
-  	resources :themes, only: [:index, :show] do
-  	  resources :post_images, only: [:new, :create]
+  	resources :themes, except: [:new, :edit] do
+	  resources :post_images, only: [:new, :create]
   	end
-  	resources :post_images, only: [:index, :show, :edit, :update, :destroy] do
+  	resources :post_images do
   	  resource :likes, only:    [:create, :destroy]
-  	  resource :comments, only: [:create, :destroy]
-  	end
+  	  resources :image_comments, only: [:create, :destroy]
+	end
+	get 'tags/:tag', to: 'post_images#index', as: :tag #投稿タグリンクのルーティング
   	resources :users, only: [:show, :edit, :update] do
   	  resource :relationships, only: [:create, :destroy]
   	  member do
-  	  	get :withdrow, :follows, :followers
+  	  	get :withdrow, :follows, :followers, :likes
   	  	patch :switch
   	  end
   	end

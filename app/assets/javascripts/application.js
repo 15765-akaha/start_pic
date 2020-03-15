@@ -17,3 +17,21 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+
+//  いいねボタン・ステータスのマウスホバー
+$(function() {
+    $(document).on({
+        'mouseenter': function(){
+          $(this).find('.likes_button').fadeIn(200);
+          $(this).find('.likes_status').fadeIn(200);
+          $(this).find('.user_achivement-p').fadeIn(200);
+        }
+        ,
+        'mouseleave': function(){
+          $(this).find('.likes_button').fadeOut(200);
+          $(this).find('.likes_status').fadeOut(200);
+          $(this).find('.user_achivement-p').fadeOut(200);
+        }
+        
+    },'.like-hover');
+});

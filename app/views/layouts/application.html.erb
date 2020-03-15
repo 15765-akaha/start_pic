@@ -2,84 +2,120 @@
 <html>
   <head>
     <title>StartPic</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <header class="header">
-   <nav class="navbar navbar-expand navbar-dark navbar-fixed-top", style="background-color: #2bc489;">
-      <div class="container">
+<header class="header">
 
-      <div class="navbar-header">
-       <%= link_to "StartPic", root_path, class: "navbar-brand" %>
-      </div>
+ <nav class="navbar navbar-expand-lg navbar-dark ">
+  <div class="container-fluid">
 
-    <ul class="navbar-nav navbar-left">
+    <a class="navbar-brand" href="/"></a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse pr-5" id="navbarNavDropdown">
 
-     <% if user_signed_in? %>
-
+    <% if admin_signed_in? %>
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to "画像一覧", post_images_path, class: "nav-link" %>
+          <%= link_to "TOP", admins_root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "テーマ一覧", themes_path, class: "nav-link" %>
+          <%= link_to "テーマ作成", admins_themes_path, class: "nav-link" %>
         </li>
-
         <li class="nav-item">
-          <%= link_to "マイページ", user_path(current_user.id), class: "nav-link" %>
+          <%= link_to "ユーザー一覧", admins_user_dates_path, class: "nav-link" %>
         </li>
-
         <li class="nav-item">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <%= link_to "投稿画像一覧", admins_post_images_path, class: "nav-link" %>
+        </li>                 
+      </ul>
+
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           管理者ログイン
+         </a>
+         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+           <%= link_to "画像一覧(ユーザー）", post_images_path, class: "dropdown-item" %>
+           <%= link_to "テーマ一覧(ユーザー）", themes_path, class:"dropdown-item" %>
+           
+           <div class="dropdown-divider"></div>
+           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "dropdown-item" %>
+         </div>
         </li>
       </ul>
 
-      <% elsif admin_signed_in? %>
+    <% elsif user_signed_in? %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to post_images_path, class: "nav-link" do %><i class="fa fa-picture-o" aria-hidden="true"></i> Images<% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to themes_path, class: "nav-link" do %><i class="fa fa-camera-retro" aria-hidden="true"></i> Challenge<% end %>
+        </li>
+      </ul>
 
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to new_post_image_path, class: "nav-link" do %><i class="fa fa-upload" aria-hidden="true"></i> Upload<% end %>
+        </li>
+      </ul>
 
-        <li class="nav-item">
-          <%= link_to "管理者TOP", admins_root_path, class: "nav-link" %>
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <%= attachment_image_tag current_user, :profile_image, :fill,50,50, fallback: 'no_image_user.jpg', size: '50x50', class: "rounded-circle" %>&nbsp&nbsp<%= current_user.name %>
+         </a>
+         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+           <%= link_to user_path(current_user), class: "dropdown-item" do %><i class="fa fa-user-circle-o" aria-hidden="true"></i> MyPage<% end %>
+           <%= link_to edit_user_path(current_user), class:"dropdown-item" do %><i class="fa fa-cog" aria-hidden="true"></i> Edit<% end %>
+           
+           <div class="dropdown-divider"></div>
+           <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out<% end %>
+         </div>
         </li>
-        <li class="nav-item">
-          <%= link_to "画像一覧", post_images_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "テーマ一覧", admins_themes_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
-        </li>
+      </ul>
+
     <% else %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to post_images_path, class: "nav-link" do %><i class="fa fa-picture-o fa" aria-hidden="true"></i> Images<% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to themes_path, class: "nav-link" do %><i class="fa fa-camera-retro fa" aria-hidden="true"></i> Challenge<% end %>
+        </li>
+      </ul>
 
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <%= link_to "会員登録", new_user_registration_path, class: "nav-link" %>
+          <%= link_to new_user_session_path, class: "nav-link" do %><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in<% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "画像一覧", post_images_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "テーマ一覧", themes_path, class: "nav-link" %>
-        </li>
-    </ul>
-
+          <%= link_to new_user_registration_path, class: "nav-link" do %><i class="fa fa-user-plus" aria-hidden="true"></i> New Account<% end %>
+        </li>        
+      </ul>
     <% end %>
 
-      </div>
-    </nav>
-   </header>
+    </div>
+  </div>
+</nav>
 
    <%= yield %>
    
   <footer class="footer">
-    <div class="container text-right mt-3">
+    <div class="container text-right text-white mt-3">
       <p>© 2020 Ryo Akaha </p>
     </div>
   </footer>
