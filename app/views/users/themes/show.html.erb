@@ -1,8 +1,8 @@
-<div class="jumbotron jumbotron-theme jumbotron-fluid">	
+<div class="jumbotron jumbotron-image jumbotron-challenge jumbotron-fluid">	
   <div class="container-fluid">
-        <h1 class="title image-text"><%= @theme.title %></h1>
+        <h1 class="title image-text ml-3"><%= @theme.title %></h1>
          <!-- 投稿メニュー -->
-         <div class="theme-menu d-flex mt-3">
+         <div class="theme-menu d-flex mt-3 ml-3">
            <%= link_to "投稿する", new_theme_post_image_path(@theme.id), class:"btn btn-primary btn" %>
         <% if user_signed_in? %>
           <% if current_user.id == @theme.create_user_id && @post_images.empty? %>
