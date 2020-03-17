@@ -1,39 +1,57 @@
+<div class="container">
 
-  <div class="container">
- 
-    <h2>ユーザー情報編集</h2>
- 
-
- <div class="flash col-6">
-  <%= render partial: 'layouts/flashes' %>
- </div>
-  
-  <%= form_for(@user) do |f| %>
-
-  <div class="row">
-    <div class="col-sm-12">
-      <%= f.label :profile_image, "プロフィールイメージ"%><br>
-      <%= f.attachment_field :profile_image %>
-    </div>
+  <div class="row mt-3 mb-3">
+    <h4 class="section-title">ユーザー情報編集</h4>
   </div>
 
-  <div class="row">
-    <div class="col-sm-5">
-      <%= f.label :name, "ニックネーム"%><br>
-      <%= f.text_field :name %>
+    <!--フラッシュメッセージ-->
+    <div class="flash col-sm-12 col-md-6"> 
+      <%= render partial: 'layouts/flashes' %>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-sm-5">
-      <%= f.label :introduction, "自己紹介"%>
-      <%= f.text_area :introduction, rows:'2', class:"form-control" %>
-    </div>
-  </div>
+      <%= form_for(@user) do |f| %>
 
-    <br>
-      <%= f.submit :"変更する", class:"btn btn-primary" %>
-      <%= link_to '退会する', withdrow_user_path(@user) , class:"btn btn-danger" %> 
-  <% end %>
-    
-</div>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.label :profile_image, "＊プロフィールイメージ"%><br>
+          <%= f.attachment_field :profile_image %>
+        </div>
+      </div>
+
+      <div class="row mt-1">
+        <div class="col-sm-6">
+          <%= f.label :name, "＊ニックネーム"%><br>
+          <%= f.text_field :name ,class:"form-control col-sm-5"%>
+        </div>
+      </div>
+
+      <div class="row mt-1">
+        <div class="col-sm-6">
+          <%= f.label :introduction, "＊自己紹介"%>
+          <%= f.text_area :introduction, rows:'2', class:"form-control" %>
+        </div>
+      </div>
+
+        <br>
+      <div class="row">
+        <div class="col-sm-5">
+          <%= f.submit :"変更する", class:"btn btn-outline-primary" %>
+        </div>
+      </div>
+      <% end %>
+
+
+      <div class="row mt-5">
+        <div class="col-sm-5">
+          <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="collapse" data-target="#collapseWithdrow" aria-expanded="false" aria-controls="collapseWithdrow">
+          退会手続き
+          </button>
+          <div class="collapse" id="collapseWithdrow">
+            <div class="card card-body">
+              <%= link_to '退会する', withdrow_user_path(@user) , class:"btn btn-danger" %> 
+            </div>
+          </div>
+        </div>
+      </div>
+        
+</div><!--container-->

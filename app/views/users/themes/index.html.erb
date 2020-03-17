@@ -1,18 +1,18 @@
-<div class="jumbotron jumbotron-theme jumbotron-fluid">	
+<div class="jumbotron jumbotron-image jumbotron-theme jumbotron-fluid">	
   <div class="container-fluid jumbotron-container">
-        <h1 class="title ml-5 display-4 text-white">テーマにチャレンジ！</h1>
-        <div class="theme-box d-flex ml-5 mt-3">
+        <h1 class="title image-text">テーマにチャレンジ！</h1>
+        <div class="theme-box d-flex mt-3 align-items-center">
           <!-- 検索フォーム -->
           <div class="search-form">
             <%= form_tag(themes_path, method: :get) do %>
             <%= text_field_tag :search %>
-            <%= submit_tag :'Search', :name => nil %>
+            <%= submit_tag :'Search', :name => nil, class:"btn btn-outline-light btn-sm ml-1" %>
             <% end %>
           </div>
         <% if user_signed_in? && achivement_check(current_user.achivement) %>
           <!-- テーマ作成ボタン -->
-          <div class="new-button ml-3">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#themeModalCenter">テーマを作成する</button>
+          <div class="new-button ml-2">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#themeModalCenter">テーマ作成</button>
           </div>
         <% end %>
         </div>
@@ -29,7 +29,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h6 class="modal-title" id="themeModalCenterTitle">テーマの作成<span class="small ml-3">※同じタイトルのテーマは作成できません。</span></h6>
+            <h6 class="modal-title" id="themeModalCenterTitle">テーマの作成<br><span class="small ml-3">※同じタイトルのテーマは作成できません。</span></h6>
             <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -40,7 +40,7 @@
               <%= form_for(@theme) do |f| %>
                 <div class="form-group mb-2 form-inline">
                   <%= f.text_field :title, class: "form-control" %>
-                  <%= f.submit "作成する", class: "btn btn-primary ml-2" %>
+                  <%= f.submit "作成する", class: "btn btn-outline-primary ml-2 mt-1" %>
                 </div>
               <% end %>
             </div>

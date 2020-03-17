@@ -1,20 +1,24 @@
 <div class="jumbotron jumbotron-extend jumbotron-fluid">	
   <div class="container-fluid jumbotron-container">
 
-   <div class="main-message ml-5 text-white">
+   <div class="main-message">
+    <!--フラッシュメッセージ-->
     <%= render partial: 'layouts/flashes' %>
 		<h1 class="title display-3">StartPic</h1>
-		<p class="subtitle ">写真の世界に飛び込んでみませんか？</p>
-    <p>これからカメラを始める方向けの写真共有アプリです。<br>
-       出題されているテーマにチャレンジして撮った写真を皆でシェアしましょう！
+		<p class="subtitle">写真の世界に飛び込んでみませんか？</p>
+    <p class="description">
+       これからカメラを始める方向けの<br>
+       写真共有アプリです。<br><br>
+       出題されているテーマにチャレンジして<br>
+       撮った写真を皆でシェアしましょう！
     </p>
-    <%= link_to "IMAGE SHOW", post_images_path, class:"btn btn-outline-light col-2"%><br>
+    <%= link_to "IMAGE SHOW", post_images_path, class:"btn btn-outline-light col-md-2 col-sm-4"%><br>
    </div>
 
   <% unless user_signed_in? %>
-   <div class="session-box mt-5 ml-5">
-    <%= link_to "新規アカウント登録", new_user_registration_path, class: "btn btn-primary col-2" %>
-    <%= link_to "サインイン", new_user_session_path, class: "btn btn-success col-2" %>
+   <div class="session-box">
+    <%= link_to "新規アカウント登録", new_user_registration_path, class: "btn btn-primary col-md-2 col-xs-5" %>
+    <%= link_to "サインイン", new_user_session_path, class: "btn btn-success col-md-2 col-xs-5" %>
 	 </div>
   <% end %>
 
