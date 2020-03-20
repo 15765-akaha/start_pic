@@ -30,7 +30,7 @@
 
 /* トップページ */
 .jumbotron-extend {
-  height : 600px;
+  height : 680px;
   min-height : 300px;
   background-image: image-url("sp-main.jpg");
   background-size: cover;
@@ -48,6 +48,41 @@
   margin-left: 50px;
 }
 
+.main-section-title {
+  position: relative;
+  display: inline-block;
+  padding: 0 55px;
+}
+
+.main-section-title:before, .main-section-title:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background-color: black;
+}
+
+.main-section-title:before {
+  left:0;
+}
+.main-section-title:after {
+  right: 0;
+}
+
+.about-text {
+  line-height: 28px;
+}
+
+.how-to-text {
+  background: linear-gradient(transparent 70%, #f9ba32 70%);
+  text-align: center;
+}
+
+.description {
+  line-height: 32px;
+}
 .session-box {
   margin-top:  50px;
   margin-left: 50px;
