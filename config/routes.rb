@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 # user
   scope module: :users do
 	root 'home#top'
+	get  'about', to: 'home#about'
   	resources :themes, except: [:new, :edit] do
 	  resources :post_images, only: [:new, :create]
   	end
