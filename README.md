@@ -1,24 +1,33 @@
-# README
+![START PIC-logo](https://user-images.githubusercontent.com/58874659/77296828-b4a5af80-6d2b-11ea-9ed4-4174ead14d65.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## [StartPic](http://start-pic.com/)とは
+  写真を始めたい方や少しでも興味のある方を想定して作成した画像投稿サイトです。
+  
+  サイト側から提案されている写真のテーマを選び、投稿した写真を通じて交流やヒントを得ることができるシンプルなつくりになっています。
+  
+## 機能
+* 画像投稿機能 
+ユーザーは自由に写真を投稿できるようになっています。 他に投稿コメントとタグを任意で追加して投稿することができます。しかし、必ず写真のテーマを決定する必要があります。  
+投稿ルートは以下２通りです。遷移方法によって投稿フォームのビューが分岐します。  
 
-Things you may want to cover:
+  - Challengeリンクから、写真テーマ一覧ページに遷移しテーマの詳細ページから投稿する。  
+(開いているテーマが紐付いた状態で投稿されるようになります。）
+  - ヘッダーナビのUploadから投稿する。  
+（投稿フォームの中に、テーマ選択のプルダウンが表示されるようになっています） 
 
-* Ruby version
+* いいね機能  
+ユーザーは投稿された画像にいいねを押すことができます。いいねを押した画像はマイページにクリップされています。
+いいねボタンはjQueryのmousecenterとmouseleaveによるイベント処理とAjaxによる非同期処理を搭載しているので
+ファーストインプレッションを大切に画面遷移なしでいいねすることができます。
 
-* System dependencies
+* 称号機能  
+ユーザーはachivement(称号）カラムを持っており、登録時にはデフォルトでBEGGINERがセットされます。
+自身の投稿のいいね数に応じて、称号が3段階上昇します。（BEGGINER→ROOKIE→CHALLENGER→MASTER) 
+サイト内では、称号名はアイコンで表示されるようになっており、いいねボタン同様のイベント処理を行ってどのランクのユーザーが投稿したかを一目で分かるようにいいねボタン同様のイベント処理をしています。
+称号の判定に関してはいいねがされた段階で判定が行われるようになっており、新たな称号を獲得した場合は、獲得日が記録され、ユーザーページにて推移を確認することができます。
+またCHALLENGERより写真のテーマを作成することができるようになります。
 
-* Configuration
+* フォロー・フォロワー機能
+ユーザー情報にはフォローボタンがついており、非同期処理にて行うことができます。
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
