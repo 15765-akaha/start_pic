@@ -73,7 +73,7 @@
 
     * bootstrap4.4.1（デザイン、石積みグリッド、レスポンシブ対応）
     
-    ＊　jquery-rails
+    *　jquery-rails
     
     *　kaminari(ページネーション)
 
