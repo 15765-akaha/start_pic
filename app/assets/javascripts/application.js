@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery3
 //= require popper
 //= require bootstrap
@@ -34,4 +33,23 @@ $(function() {
         }
         
     },'.like-hover');
+});
+
+// 画像プレビュー機能
+ $(function(){
+   $('#post-image').change(function(e){
+    // 投稿された画像ファイルのオブジェクト取得
+      var file = e.target.files[0];
+      var reader = new FileReader();
+    // 画像ではない場合の処理
+      if(file.type.indexOf("image") < 0) {
+        alert("画像ファイルを選択してください")
+        return false;
+      }
+    // アップロードした画像をプレビュー部分に上書き
+      reader.onload = (function(e){
+      $('#img-prev').attr('src', e.target.result);
+      });
+      reader.readAsDataURL(file);
+ });
 });
