@@ -19,28 +19,28 @@
 
 
         <!-- ユーザーインフォメーション -->
-  <div class="col-md-5 offset-1">
+  <div class="col-md-5 offset-md-1">
 
         <!-- プロフィール -->
-        <div class="row">
+        <div class="row pl-3">
           <div class="user_date d-flex align-items-center mt-5">
             <%= link_to user_path(@post_image.user) do %>
             <%= attachment_image_tag @post_image.user, :profile_image, :fill,60,60, fallback: 'no_image.png', size: '100x100', class: "rounded-circle" %>
             <% end %>
-            <div class="user_name h3 mx-3 "><%= link_to @post_image.user.name, user_path(@post_image.user) %></div>
+            <div class="user_name h5 mx-3 "><%= link_to @post_image.user.name, user_path(@post_image.user) %></div>
             <div class="user_achivement">
               <%= image_tag achivement_image_name(@post_image.user.achivement), size: '48x48' %>
             </div>
+          </div>
             <!-- フォローボタン -->
-            <div id="follow_buttons_<%= @post_image.user.id %>" class="follow_button">
+            <div id="follow_buttons_<%= @post_image.user.id %>" class="follow_button ml-2 mt-2">
               <%= render partial: 'users/users/follow_btn', locals: {user: @post_image.user} %>
             </div>
-          </div>
         </div>
 
         
             <!-- ステータス -->
-        <div class="row border-bottom d-flex align-item-center">
+        <div class="row border-bottom d-flex align-item-center pl-3">
             <div id="likes_status_<%= @post_image.id %>" class="likes_status-active pt-1">
             <%= render partial: 'users/likes/like_status', locals: {post_image: @post_image} %>
             </div>
@@ -75,10 +75,10 @@
 
             
             <!-- コメント欄 -->
-            <div id="image_comments">
-              <p class="text-secondary ml-1 mt-2">コメント</p>
-              <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
-            </div>
+        <div id="image_comments">
+          <p class="text-secondary ml-1 mt-2">コメント</p>
+          <%= render partial: 'image_comments', locals: {post_image: @post_image} %>
+        </div>
 
 
             <!-- コメントフォーム -->

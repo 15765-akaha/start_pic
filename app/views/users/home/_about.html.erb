@@ -1,0 +1,55 @@
+   <div class="row d-flex justify-content-center mt-5">
+   	<h2 class="main-section-title">About Start Pic</h2>
+   </div>
+
+  <div class ="row mt-3">
+	<div class="col-md-6">
+		<%= image_tag 'sp-camera.jpg', class: 'img-fluid' %>
+	</div>
+	<div class="col-md-6">
+		<p class="about-text">写真に少しでも興味があるアナタへ<br>
+			写真を撮ることが身近になった今日この頃、<br>
+			何を撮ればいいか迷ってしまうことありませんか？<br>
+			誰でも簡単に始めることができるのに、趣味としては完成度の幅がありすぎてハードルが高い<br>
+			「そんなこと気にしないで」という声もあるけど、そんなことが気になる人が結構多いと思いました。<br><br>
+			では何か目標があったらどうだろうか。きっかけさえあれば入り込めるのではないか。<br>
+			そのような考えでStartPicをつくってみました。<br><br>
+			StartPicは提案されている写真のテーマを選び、投稿した写真の共有ができるアプリです。<br>
+		</p>
+	</div>
+  </div>
+
+   <hr class="featurette-divider">
+
+	  <div class="row d-flex justify-content-center mt-5">
+	   <h2 class="main-section-title mb-5">How to Use</h2>
+   	  </div>
+		<div class="container">
+    			<div class="row">
+				<div class="col-lg-4">
+					<h4 class="how-to-text">テーマに挑戦する</h4>
+					<p class="description">挑戦してみたい写真のテーマを選びます。<br>そこからテーマに沿った写真を自由に投稿することができます。ライブラリの中からテーマに合う写真を選択してもよし。これをきっかけに
+					   写真を撮りにスポットに出掛けてもよし。コメントとタグを付けて投稿できるので情景をみんなに伝えましょう。</p>
+				</div><!-- /.col-lg-4 -->
+				<div class="col-lg-4">
+					<h4 class="how-to-text">インスピレーションを受ける</h4>
+					<p class="description">投稿された画像をダイナミックに見ながら、自分のお気に入りを見つけることができます。<br>
+					   画像右上に表示される<i class="fa fa-heart-o no-heart fa-2x" aria-hidden="true"></i>を押すといいねができ、マイページにクリップすることができます。<br>
+					   もっと気になったら、コメントを残したり、フォローして交流しましょう。</p>
+				</div><!-- /.col-lg-4 -->
+				<div class="col-lg-4">
+					<h4 class="how-to-text">ランクをあげる</h4>
+					<p class="description">自分の投稿にもらえるいいね数に応じて<br>ランクが変わります。<br>
+					   BEGGINER→ROOKIE→CHALLENGER→MASTER
+					   の順でランクが変化していき、名前の横にランクのアイコンが表示されるようになります。
+					   CHALLENGERを獲得すると写真のお題を自ら作成し、提案することができるようになります。</p>
+				</div><!-- /.col-lg-4 -->
+			</div><!-- /.row -->
+    </div>
+
+   <hr class="featurette-divider">
+   <div class="row d-flex justify-content-center">
+	<div class="col-lg-5">
+	<%= link_to "StartPicを始めてみる", new_user_registration_path, class: "btn btn-primary btn-block" %>
+	</div>
+   </div>

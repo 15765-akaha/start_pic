@@ -5,7 +5,7 @@ class Users::ThemesController < ApplicationController
     if params[:search] #検索が含まれていたら
       @themes = Theme.search(params[:search]).page(params[:page]).per(12)
     else
-      @themes = Theme.where(is_enabled: true).page(params[:page]).per(12)
+      @themes = Theme.where(is_enabled: true).order(:title).page(params[:page]).per(12)
     end
   end
 
