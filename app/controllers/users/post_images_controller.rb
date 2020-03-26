@@ -6,7 +6,7 @@ class Users::PostImagesController < ApplicationController
     if params[:tag]
       @post_images = PostImage.tagged_with(params[:tag])
     else
-      @post_images = PostImage.all.shuffle
+      @post_images = PostImage.page(params[:page]).per(30)
     end
 
   end
