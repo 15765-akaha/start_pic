@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require jquery3
+//= require jquery.jscroll.min.js
 //= require popper
 //= require bootstrap
 //= require_tree .
@@ -53,3 +54,15 @@ $(function() {
       reader.readAsDataURL(file);
  });
 });
+
+$(window).on('scroll', function() {
+  scrollHeight = $(document).height();
+  scrollPosition = $(window).height() + $(window).scrollTop();
+  if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+        $('.jscroll').jscroll({
+          contentSelector: '.jscroll',
+          nextSelector: ".jscroll-next"
+        });
+  }
+});
+

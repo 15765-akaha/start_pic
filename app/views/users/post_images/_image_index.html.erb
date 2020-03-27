@@ -1,4 +1,5 @@
-<% post_images.each do |post_image| %>
+<div class="jscroll">
+  <% post_images.each do |post_image| %>
   <div class="card like-hover">
       <%= link_to post_image_path(post_image) do %>
       <%= attachment_image_tag post_image, :image, format: 'jpeg', class:"card-img img-fluid" %>
@@ -19,4 +20,6 @@
       <%= render partial: 'users/likes/like_status', locals: {post_image: post_image} %>
     </div>
   </div>
-<% end %>
+  <% end %>
+ <span class="jscroll-next"><%= paginate post_images %></span>
+</div>
