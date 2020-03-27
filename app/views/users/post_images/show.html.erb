@@ -86,7 +86,7 @@
           <div class="col-12">
            <% if user_signed_in? %>
             <div class="form-group">
-              <%= form_with model: [@post_image, @image_comment] do |f| %>
+              <%= form_with model: [@post_image, @image_comment] ,local: true do |f| %>
                <%= f.text_area :comment, rows:'2', class:"form-control" %>
                <%= f.submit :"コメントする", class:"btn btn-info mt-2"%>
               <% end %>
