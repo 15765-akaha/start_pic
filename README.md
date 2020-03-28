@@ -35,7 +35,7 @@
 #### 称号機能  
 ユーザーはachivement(称号）カラムを持っており、登録時にはデフォルトでBEGGINERがセットされます。
 
-自身の投稿のいいね数に応じて、称号が3段階上昇します。（BEGGINER→ROOKIE→CHALLENGER→MASTER)
+自身の投稿のいいね数に応じて、称号が3段階上昇します。（BEGINER→ROOKIE→CHALLENGER→MASTER)
 
 サイト内では、称号名はアイコンで表示されるようになっています。
 
