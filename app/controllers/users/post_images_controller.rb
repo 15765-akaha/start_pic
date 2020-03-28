@@ -4,7 +4,7 @@ class Users::PostImagesController < ApplicationController
  before_action :ensure_correct_user, only: [:edit, :destroy]
   def index
     if params[:tag]
-      @post_images = PostImage.tagged_with(params[:tag])
+      @post_images = PostImage.tagged_with(params[:tag]).page(params[:page]).per(30)
     else
       @post_images = PostImage.page(params[:page]).per(30).reverse_order
     end
