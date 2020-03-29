@@ -17,4 +17,7 @@
                 <%= render partial: 'users/post_images/image_index', locals: {post_images: @post_images} %>
         </div>
       </div>
+        <div class="row d-flex justify-content-center">
+           <%= paginate @post_images %>
+         </div>
     </div>
