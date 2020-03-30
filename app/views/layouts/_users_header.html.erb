@@ -20,7 +20,9 @@
          </a>
          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
            <%= link_to user_path(current_user), class: "dropdown-item" do %><i class="fa fa-user-circle-o" aria-hidden="true"></i> MyPage<% end %>
+           <% unless current_user.email == "test@example.com" %><!--テストユーザーの場合-->
            <%= link_to edit_user_path(current_user), class:"dropdown-item" do %><i class="fa fa-cog" aria-hidden="true"></i> Edit<% end %>
+           <% end %>
            
            <div class="dropdown-divider"></div>
            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out<% end %>

@@ -34,10 +34,13 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-lg-6" ,placeholder:"もう一度入力してください"%>
         </div>
 
-        <div class="actions">
-          <%= f.submit "新規登録" , class:"btn btn-primary col-md-6 mt-4"%>
+        <div class="actions col-lg-6 mt-4">
+          <%= f.submit "新規登録" , class:"btn btn-primary btn-block"%>
+          <% end %>
+          <!--テストユーザーログインボタン-->
+          <div class="test_user_btn"><%= render partial: 'users/sessions/testuser' %></div>
         </div>
-      <% end %>
+
     </div>
   </div>
 </div>
