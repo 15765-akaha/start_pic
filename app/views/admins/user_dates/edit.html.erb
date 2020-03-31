@@ -13,9 +13,20 @@
           <%= f.label @user.id, class: "col-sm-8" %>
         </div>
 
+        <div class="form-group">
+          <%= f.label :プロフィールイメージ %>
+          <%= attachment_image_tag @user, :profile_image, :fill,60,60, fallback: 'no_image_user.jpg', size: '60x60', class: "rounded" %><br>
+          <%= f.attachment_field :profile_image %>
+        </div>
+
         <div class="form-group row">
           <%= f.label :ニックネーム, class: "col-sm-5" %>
           <%= f.text_field :name, class: "form-control col-sm-7" %>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :自己紹介, class: "col-sm-5" %><br>
+          <%= f.text_area :introduction, class: "form-control col-sm-7" %>
         </div>
 
         <div class="row">
