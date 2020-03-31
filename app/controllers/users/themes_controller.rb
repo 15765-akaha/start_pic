@@ -1,5 +1,6 @@
 class Users::ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :update, :destroy]
+  before_action :forbit_test_user, only: [:create]
   def index
       @theme = Theme.new
     if params[:search] #検索が含まれていたら
@@ -60,5 +61,11 @@ class Users::ThemesController < ApplicationController
   end
   def theme_params
     params.require(:theme).permit(:title, :is_enabled)
+  end
+  def forbit_test_user
+    if current_user.email == "test@example.com"
+    flash[:danger]= "テストユーザーのためテーマの作成はできません"
+    redirect_to themes_path
+    end
   end
 end
