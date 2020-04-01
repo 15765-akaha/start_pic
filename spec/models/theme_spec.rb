@@ -7,6 +7,7 @@ RSpec.describe "テーマモデルのテスト", type: :model do
     context "管理者側が作成するパターン" do
       before do
         @theme = build(:theme)
+        @theme.admin = true
       end
 
       it "タイトルが入力されているので作成できる" do
@@ -59,6 +60,11 @@ RSpec.describe "テーマモデルのテスト", type: :model do
       end
       it "create_user_idに作成したuserのIDが保存されている" do
         expect(@theme.create_user_id).to eq @user.id
+      end
+
+      it "adminがfalseの状態でcreate_user_idがない場合は無効である" do
+        @theme.create_user_id = nil
+        expect(@theme).to_not be_valid
       end
       it "userのachivementは CHALLENGER である" do
         @user.achivement = "CHALLENGER"
