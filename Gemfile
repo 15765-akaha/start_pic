@@ -82,6 +82,8 @@ gem 'acts-as-taggable-on', '~> 6.0'
 # pagenation
 gem 'kaminari','~> 1.1.1'
 
+gem 'rails-i18n'
+
 # deploy
 gem 'dotenv-rails'
 
