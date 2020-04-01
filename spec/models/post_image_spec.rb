@@ -15,10 +15,17 @@ RSpec.describe "投稿画像のテスト", type: :model do
             @post_image.caption = Faker::Lorem.characters(number:101)
             expect(@post_image).to_not be_valid
         end
-        it "画像ファイルではない場合投稿できない"
-        it "テーマが選ばれていない場合、投稿できない"
-        it "ユーザーIDがなければ投稿できない"
+        # it "画像ファイルがない場合、投稿できない" do
+        #     @post_image.image_id = nil
+        #     expect(@post_image).to_not be_valid
+        # end
+        it "テーマが選ばれていない場合、投稿できない" do
+            @post_image.theme_id = ""
+            expect(@post_image).to_not be_valid
+        end
+        it "ユーザーIDがなければ投稿できない" do
+            @post_image.user_id = ""
+            expect(@post_image).to_not be_valid
+        end
     end
-
-
 end
