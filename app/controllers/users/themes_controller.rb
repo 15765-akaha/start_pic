@@ -71,7 +71,7 @@ class Users::ThemesController < ApplicationController
   end
 
   def forbit_unauthorized_user
-    if current_user.achivement == "BEGINER" || current_user.achivement == "ROOKIE"
+    if current_user.achivement == "BEGINNER" || current_user.achivement == "ROOKIE"
       flash[:danger]="権限がありません"
       redirect_to themes_path
     end
