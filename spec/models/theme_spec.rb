@@ -70,15 +70,6 @@ RSpec.describe "テーマモデルのテスト", type: :model do
         @theme.create_user_id = nil
         expect(@theme).to_not be_valid
       end
-      it "userのachivementは CHALLENGER である" do
-        @user.achivement = "CHALLENGER"
-        expect(@theme.create_user_id).to eq @user.id
-      end
-
-      it "userのachivementは MASTER である" do
-        @user.achivement = "MASTER"
-        expect(@theme.create_user_id).to eq @user.id
-      end
     end
 
   end
