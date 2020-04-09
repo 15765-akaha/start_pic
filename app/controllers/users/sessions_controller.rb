@@ -29,8 +29,11 @@ class Users::SessionsController < Devise::SessionsController
     if resource.is_enabled == false    #(resource)に入った値のユーザーのステータスが退会済になっていたら強制退去
        sign_out resource
        root_path
-    else
+    elsif 
+       session[:previous_url] == '/'   # topページからのログインの場合はユーザーページに遷移
        user_path(resource)
+    else
+       session[:previous_url] || root_path #　それ以外はログインが要求される前のページに遷移
     end
   end
 end
