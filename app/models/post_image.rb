@@ -1,6 +1,7 @@
 class PostImage < ApplicationRecord
-  # validates :image_id, presence: true
-  attachment :image
+  # validates :image_id, file_content_type: { allow: ['image/jpeg', 'image/png'] }
+  validates :caption, length: { maximum: 100 }
+  attachment :image, type: :image
   acts_as_taggable
   belongs_to :user
   belongs_to :theme

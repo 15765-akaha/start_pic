@@ -2,6 +2,7 @@ class Users::UsersController < ApplicationController
   before_action :authenticate_user! , except: [:show]
   before_action :set_user
   before_action :ensure_correct_user, only: [:edit, :withdrow]
+  before_action :forbit_test_user, only: [:edit, :withdrow]
   def show
     @post_images = @user.post_images #投稿画像
     @like_post_images = @user.likes_post_images #いいねした画像
@@ -48,6 +49,13 @@ class Users::UsersController < ApplicationController
       flash[:danger] = "権限がありません"
       redirect_to user_path(current_user.id)
    end
+  end
+
+  def forbit_test_user
+    if current_user.email == "test@example.com"
+    flash[:danger]= "テストユーザーのため変更できません"
+    redirect_to root_path
+    end
   end
 
 end
