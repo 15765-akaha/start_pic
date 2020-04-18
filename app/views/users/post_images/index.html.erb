@@ -1,13 +1,7 @@
 <% unless params[:page] %>
 <div class="jumbotron jumbotron-image jumbotron-post_image jumbotron-fluid">	
   <div class="container-fluid jumbotron-container">
-        <h1 class="title image-text">インスピレーションを受ける</h1>
-        <div class="search-box mt-3">
-          <%= form_tag(post_images_path, method: :get) do %>
-          <%= text_field_tag :tag %>
-          <%= submit_tag :'Search', :name => nil , class:"btn btn-outline-light btn-sm" %>
-          <% end %>
-        </div>
+      <h1 class="title image-text">インスピレーションを受ける</h1>
   </div>
 </div>
 <% end %>

@@ -33,7 +33,7 @@ class Users::SessionsController < Devise::SessionsController
        session[:previous_url] == '/'   # topページからのログインの場合はユーザーページに遷移
        user_path(resource)
     else
-       session[:previous_url] || root_path #　それ以外はログインが要求される前のページに遷移
+       session[:previous_url] || root_path # それ以外はログインが要求される前のページに遷移
     end
   end
 end

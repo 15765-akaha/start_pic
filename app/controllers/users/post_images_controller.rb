@@ -45,8 +45,6 @@ class Users::PostImagesController < ApplicationController
         render :new
       end
     end
-
-
   end
 
   def edit
@@ -57,17 +55,14 @@ class Users::PostImagesController < ApplicationController
        flash[:success] = '編集しました！'
        redirect_to post_image_path(@post_image)
     else
-      flash.now[:danger] = '編集に失敗しました'
-      render :edit
+       flash.now[:danger] = '編集に失敗しました'
+       render :edit
     end
   end
 
   def destroy
     @post_image.destroy
     redirect_to post_images_path
-  end
-
-  def search
   end
 
   private

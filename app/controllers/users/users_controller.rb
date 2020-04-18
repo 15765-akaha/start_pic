@@ -53,8 +53,8 @@ class Users::UsersController < ApplicationController
 
   def forbit_test_user
     if current_user.email == "test@example.com"
-    flash[:danger]= "テストユーザーのため変更できません"
-    redirect_to root_path
+       flash[:danger]= "テストユーザーのため変更できません"
+       redirect_to root_path
     end
   end
 

@@ -29,14 +29,13 @@ class Users::ThemesController < ApplicationController
   end
 
   def update
-
     if @theme.update(theme_params)
       flash[:success] = 'テーマを編集しました！'
       redirect_to theme_path(@theme)
-   else
+    else
       flash.now[:danger] = '編集できませんでした'
       render :show
-   end
+    end
   end
 
   def destroy
@@ -46,27 +45,19 @@ class Users::ThemesController < ApplicationController
     redirect_to themes_path
   end
 
-
-  def sort #いいね順にトップ３を取り出す。
-    @theme = Theme.find(params[:id])
-    @post_images = @theme.post_images.find(Like.group(:post_image_id).order('count(post_image_id) desc').limit(3).pluck(:post_image_id))
-    # @theme = Theme.find(params[:id]) # テーマに投稿された画像のいいね数を配列として取り出して、いいね数を基準にソートして上位から取り出す。
-    # post_image_like_count = @theme.post_images.joins(:likes).group(:post_image_id).count
-    # post_image_liked_ids = Hash[post_image_like_count.sort_by{ |k, v| -v }].keys
-    # @post_images = PostImage.where(id: post_image_liked_ids)
-  end
-
   private
   def set_theme
     @theme = Theme.find(params[:id])
   end
+
   def theme_params
     params.require(:theme).permit(:title, :is_enabled)
   end
+
   def forbit_test_user
     if current_user.email == "test@example.com"
-    flash[:danger]= "テストユーザーのためテーマの作成はできません"
-    redirect_to themes_path
+      flash[:danger]= "テストユーザーのためテーマの作成はできません"
+      redirect_to themes_path
     end
   end
 
