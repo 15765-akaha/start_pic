@@ -1,2 +1,0 @@
-$('#likes_buttons_<%= @post_image.id %>').html("<%= j (render partial: 'users/likes/like', locals:{post_image: @post_image} )%>");
-$('#likes_status_<%= @post_image.id %>').html("<%= j (render partial: 'users/likes/like_status', locals:{post_image: @post_image} )%>");
