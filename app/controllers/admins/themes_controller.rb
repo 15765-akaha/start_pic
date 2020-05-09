@@ -13,9 +13,11 @@ class Admins::ThemesController < ApplicationController
         :create_user => theme.create_user_id.present? ? User.find(theme.create_user_id) : "" #create_user_idをUserから参照：nill判定
       }
       array.push(hash)
-   end
+    end
       @view_themes = Kaminari.paginate_array(array).page(params[:page]).per(12) #配列用のページネーションメソッド
-end
+      page_num = Kaminari.paginate_array(array).page(params[:page]).current_page #現在のページ番号を取得
+      @base_level = (page_num-1)*10 #通し番号のベースの作成
+  end
   def create
     @theme = Theme.new(theme_params)
     @theme.admin = true

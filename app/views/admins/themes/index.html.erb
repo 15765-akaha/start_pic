@@ -23,6 +23,7 @@
       <table class="table table-bordered">
         <thead>
           <tr>
+          <th>No.</th>
           <th>タイトル</th>
           <th>投稿数</th>
           <th>公開ステータス</th>
@@ -32,8 +33,9 @@
         </thead>
 
         <tbody>
-        <% @view_themes.each do |theme| %>
+        <% @view_themes.each.with_index(1) do |theme, i| %>
           <tr>
+          <td><%= @base_level + i %></td>
           <td><%= theme[:theme].title %></td>
           <td><%= theme[:theme].post_images.count %>
           <td>

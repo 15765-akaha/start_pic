@@ -9,6 +9,7 @@
 
       <thead>
         <tr>
+          <th>No.</th>
           <th>イメージ</th>
           <th>投稿ユーザー名</th>
           <th>投稿日時</th>
@@ -17,8 +18,9 @@
       </thead>
 
       <tbody>
-        <% @post_images.each do |post_image| %>
+        <% @post_images.each.with_index(1) do |post_image, i| %>
         <tr>
+          <td><%= @base_level + i %>
           <td><%= link_to post_image_path(post_image) do %>
               <%= attachment_image_tag post_image, :image, :fill,100,100, class: "rounded" %></td>
               <% end %>

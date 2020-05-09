@@ -3,6 +3,8 @@ class Admins::UserDatesController < ApplicationController
   before_action :set_user , except: [:index]
   def index
     @users = User.page(params[:page]).per(10)
+    page_num = User.page(params[:page]).current_page
+    @base_level = (page_num-1)*10
   end
 
   def show
