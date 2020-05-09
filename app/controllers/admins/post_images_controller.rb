@@ -3,7 +3,7 @@ class Admins::PostImagesController < ApplicationController
   def index
     @post_images = PostImage.page(params[:page]).per(20)
     page_num = PostImage.page(params[:page]).current_page
-    @base_level = (page_num - 1)*10
+    @base_level = (page_num - 1)*20
 
   end
 

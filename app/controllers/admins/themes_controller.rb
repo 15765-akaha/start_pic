@@ -16,7 +16,7 @@ class Admins::ThemesController < ApplicationController
     end
       @view_themes = Kaminari.paginate_array(array).page(params[:page]).per(12) #配列用のページネーションメソッド
       page_num = Kaminari.paginate_array(array).page(params[:page]).current_page #現在のページ番号を取得
-      @base_level = (page_num-1)*10 #通し番号のベースの作成
+      @base_level = (page_num-1)*12 #通し番号のベースの作成
   end
   def create
     @theme = Theme.new(theme_params)
