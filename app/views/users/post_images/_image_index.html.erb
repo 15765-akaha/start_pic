@@ -1,4 +1,4 @@
-<% post_images.each do |post_image| %>
+<% post_images.shuffle.each do |post_image| %>
   <div class="card like-hover">
       <%= link_to post_image_path(post_image) do %>
       <%= attachment_image_tag post_image, :image, format: 'jpeg', class:"card-img img-fluid" %>
