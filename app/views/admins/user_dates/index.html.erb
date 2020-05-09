@@ -8,7 +8,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>ユーザーID</th>
+          <th>No.</th>
           <th>イメージ</th>
           <th>氏名</th>
           <th>メールアドレス</th>
@@ -20,9 +20,9 @@
       </thead>
 
       <tbody>
-        <% @users.each do |user| %>
+        <% @users.each.with_index(1) do |user, i| %>
         <tr>
-          <td><%= user.id %></td>
+          <td><%= @base_level + i %></td>
           <td><%= attachment_image_tag user, :profile_image, :fill,60,60, fallback: 'no_image_user.jpg', size: '60x60', class: "rounded" %>
           <td><%= link_to user_path(user) do %>
               <%= user.name %>(ユーザーページ)
