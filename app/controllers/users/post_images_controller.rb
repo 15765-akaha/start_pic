@@ -6,7 +6,7 @@ class Users::PostImagesController < ApplicationController
     if params[:tag]
       @post_images = PostImage.tagged_with(params[:tag]).page(params[:page]).per(30)
     else
-      @post_images = PostImage.page(params[:page]).per(30).reverse_order
+      @post_images = PostImage.page(params[:page]).per(48).reverse_order
     end
 
   end
@@ -39,7 +39,7 @@ class Users::PostImagesController < ApplicationController
       @post_image.user_id = current_user.id
       if @post_image.save
         flash[:success] = '投稿しました！'
-        redirect_to post_images_path
+        redirect_to post_image_path(@post_image)
       else
         flash.now[:danger] = 'テーマを選択してください'
         render :new
