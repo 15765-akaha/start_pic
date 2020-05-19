@@ -47,10 +47,10 @@
         <a class="nav-link active" id="pills-post-tab" data-toggle="pill" href="#pills-post" role="tab" aria-controls="pills-post" aria-selected="true">POST(<%= @user.post_images.count %>)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="pills-favorite-tab" data-toggle="pill" href="#pills-favorite" role="tab" aria-controls="pills-favorite" aria-selected="false">FAVORITE(<span id = "likes"><%= @user.likes_post_images.count %></span>)</a>
+        <a class="nav-link" id="pills-favorite-tab" data-toggle="pill" href="#pills-favorite" role="tab" aria-controls="pills-favorite" aria-selected="false">FAVORITE(<%= @user.likes_post_images.count %>)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="pills-follow-tab" data-toggle="pill" href="#pills-follow" role="tab" aria-controls="pills-follow" aria-selected="false">FOLLOW(<span id = "followings"><%= @user.followings.count %></span>)</a>
+        <a class="nav-link" id="pills-follow-tab" data-toggle="pill" href="#pills-follow" role="tab" aria-controls="pills-follow" aria-selected="false">FOLLOW(<%= @user.followings.count %>)</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="pills-follower-tab" data-toggle="pill" href="#pills-follower" role="tab" aria-controls="pills-follower" aria-selected="false">FOLLOWER(<%= @user.followers.count %>)</a>
