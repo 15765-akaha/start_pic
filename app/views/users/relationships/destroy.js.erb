@@ -1,2 +1,1 @@
 $('#follow_buttons_<%= @user.id %>').html("<%= j (render partial: 'users/users/follow_btn', locals:{user: @user} )%>");
-$("#followings").html('<%= current_user.followings.count %>');
