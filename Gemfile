@@ -80,7 +80,7 @@ gem "refile-mini_magick"
 # tag
 gem 'acts-as-taggable-on', '~> 6.0'
 # pagenation
-gem 'kaminari','~> 1.1.1'
+gem 'kaminari','~> 1.2.1'
 
 gem 'rails-i18n'
 
